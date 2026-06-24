@@ -102,7 +102,7 @@ header {
     background-color: #111;
 }
 
-/* 🌟スライド画像設定（メニューバーに被らないよう、上部に70pxの余白を設けて綺麗に収める） */
+/* 🌟スライド画像設定（PC用の基本設定） */
 .slide {
     position: absolute;
     top: 70px; /* メニューバーの高さ分、画像位置を下げる */
@@ -111,19 +111,31 @@ header {
     height: calc(100vh - 70px); /* 画面全体からメニューバーの高さを引いた領域 */
     background-size: contain; /* 画像を画面内に収めて全体を表示 */
     background-repeat: no-repeat;
-    background-position: center top; /* 中央・上部を基準に配置 */
+    background-position: center top; /* PCは中央・上部を基準に配置 */
     opacity: 0;
     animation: slideAnime 10s infinite;
+    
+    /* スマホ描画バグ対策 */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
 }
 
-.slide1 { background-image: url('bg1.jpg'); }
-.slide2 { background-image: url('bg2.jpg'); animation-delay: 5s; }
+.slide1 { 
+    background-image: url('bg1.jpg'); 
+}
+
+.slide2 { 
+    background-image: url('bg2.jpg'); 
+    animation-delay: 5s; 
+}
 
 @keyframes slideAnime {
     0% { opacity: 0; }
-    10% { opacity: 1; }
+    5% { opacity: 1; }
     45% { opacity: 1; }
-    55% { opacity: 0; }
+    50% { opacity: 0; }
     100% { opacity: 0; }
 }
 
@@ -603,6 +615,11 @@ footer {
         gap: 15px;
     }
     
+    /* 💡 スマホの時だけ背景スライダー画像を中央基準（center center）にして見切れを防ぐ */
+    .slide {
+        background-position: center center !important;
+    }
+    
     /* トップページ用スマホ調整 */
     .hero-scroll-container {
         padding-top: 190px; /* スマホはメニューが広がるため、上部余白をさらに確保 */
@@ -634,7 +651,9 @@ footer {
     .access-container {
         grid-template-columns: 1fr;
     }
-}/* ==========================================================================
+}
+
+/* ==========================================================================
    10. 簡易パスワード保護画面のスタイル
    ========================================================================== */
 /* ロック時はスクロールを禁止にする */
@@ -651,124 +670,22 @@ body.password-locked {
     width: 100%;
     height: 100vh;
     background-color: #111111; /* 高級感のある純黒 */
-    z-index: 9999; /* 最前面に表示 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* パスワード入力ボックス */
-.password-box {
-    background-color: #1a1a1a;
-    border: 2px solid #d4af37; /* ゴールドの枠線 */
-    padding: 40px 30px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.password-box h2 {
-    font-family: 'Georgia', serif;
-    color: #d4af37;
-    font-size: 2rem;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
-}
-
-.pass-msg {
-    color: #cccccc;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-/* 入力フォームエリア */
-.pass-form {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-#password-input {
-    width: 60%;
-    padding: 12px;
-    border: 1px solid #555;
-    background-color: #222;
-    color: #fff;
-    font-size: 1rem;
-    border-radius: 4px;
-    letter-spacing: 2px;
-}
-
-#password-input:focus {
-    outline: none;
-    border-color: #d4af37;
-}
-
-.password-box button {
-    background-color: #8b0000; /* テーマカラーの深い赤 */
-    color: #fff;
-    border: 1px solid #d4af37;
-    padding: 0 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.password-box button:hover {
-    background-color: #a30000;
-}
-
-/* スマホ用調整 */
-@media (max-width: 480px) {
-    .pass-form {
-        flex-direction: column;
-        gap: 15px;
-    }
-    #password-input {
-        width: 100%;
-    }
-    .password-box button {
-        padding: 12px;
-    }
-}/* ==========================================================================
-   10. 簡易パスワード保護画面のスタイル（スマホ表示バグ修正版）
-   ========================================================================== */
-/* ロック時はスクロールを禁止にする */
-body.password-locked {
-    overflow: hidden !important;
-    height: 100vh;
-}
-
-/* ロック時の背景（コンテンツを完全に見えなくする） */
-#password-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #111111; /* 高級感のある純黒 */
-    z-index: 99999; /* スライダー（z-index: 1〜2程度）より確実に前面に出す */
+    z-index: 99999; /* 最前面に表示 */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.3s ease; /* 解除時に滑らかに消すための設定 */
+    transition: opacity 0.3s ease;
 }
 
-/* 💡 パスワード解除後に完全に存在を消すための設定 */
+/* パスワード解除後に黒い画面の残像を完全に消し去る設定 */
 body:not(.password-locked) #password-overlay {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    z-index: -99999 !important; /* スライダーの遥か後ろに追いやる */
+    z-index: -99999 !important;
 }
 
 /* パスワード入力ボックス */
