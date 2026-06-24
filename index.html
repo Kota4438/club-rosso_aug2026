@@ -77,22 +77,10 @@
     </footer>
 
     <script>
-        // 暗号化した正しいパスワード（「kota0927」）
-        const hash = "1a8fec9a185b144fcde94054a86b9b8b"; 
-
-        function simpleHash(str) {
-            let h = 0;
-            for (let i = 0; i < str.length; i++) {
-                h = (h << 5) - h + str.charCodeAt(i);
-                h |= 0;
-            }
-            return h.toString(16);
-        }
-
         function checkPassword() {
             const input = document.getElementById("password-input").value;
-            // ハッシュ値の簡易チェック（kota0927 -> -1b09fd64 などを判定）
-            if (input === "kota0927") {
+            // 💡 パスワードの判定を「20260815」に変更しました
+            if (input === "20260815") {
                 document.body.classList.remove("password-locked");
                 localStorage.setItem("site_authenticated", "true");
             } else {
