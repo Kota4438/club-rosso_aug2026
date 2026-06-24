@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉沢孝太郎"祝還暦"イベント 特設サイト</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="password-locked"> <div id="password-overlay">
+        <div class="password-box">
+            <h2>INVITATION</h2>
+            <p class="pass-msg">誠に恐れ入りますが、本サイトはご招待者様限定となっております。<br>招待状に記載のパスワードを入力してください。</p>
+            <div class="pass-form">
+                <input type="password" id="password-input" placeholder="パスワードを入力">
+                <button onclick="checkPassword()">入室</button>
+            </div>
+            <p id="error-message" style="color: #ff4757; margin-top: 15px; font-weight: bold; display: none;">パスワードが正しくありません。</p>
+        </div>
+    </div>
+
+    <div id="protected-content">
+        <header>
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.jpg" alt="Celebrating 60th Birthday" class="logo-img">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Top</a></li>
+                    <li><a href="access.html">Access</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="slider-background">
+            <div class="slide slide1"></div>
+            <div class="slide slide2"></div>
+        </div>
+
+        <main class="hero-scroll-container">
+            <div class="hero-content retro-container">
+                <h1 class="retro-title-main">吉沢孝太郎”祝還暦”イベント</h1>
+                
+                <h2 class="retro-title-sub">
+                    <span class="small-prefix">元宝塚歌劇団花組男役</span>
+                    <span class="retro-star-name">真丘奈央</span><br>
+                    <span class="onstage-text">オンステージ</span>
+                </h2>
+                
+                <p class="retro-date-clean">2026.8.15 (Sat)</p>
+                
+                <div class="retro-venue-box">
+                    <p class="venue-name">Club Rosso</p>
+                    <p class="venue-address">渋谷区松濤1-29-1渋谷クロスロードビルB1F</p>
+                    <p class="event-price">料金：4,500円 / 人</p>
+                </div>
+                
+                <a href="ticket.html" class="cta-button retro-btn">チケットを申し込む</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-message');
+            
+            // 💡 現在のパスワードは 「20260815」 になっています（自由に変更可能です）
+            if (input === '20260815') {
+                // 正解の場合、ロック画面を非表示にしてサイトコンテンツを表示
+                document.getElementById('password-overlay').style.display = 'none';
+                document.body.classList.remove('password-locked');
+                
+                // 一度ログインしたら、ブラウザを閉じるまで再入力不要にする（セッション保存）
+                sessionStorage.setItem('site_authenticated', 'true');
+            } else {
+                // 不正解の場合、エラーメッセージを表示
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // ページを読み込んだ際、すでにログイン済みかチェックする
+        window.onload = function() {
+            if (sessionStorage.getItem('site_authenticated') === 'true') {
+                document.getElementById('password-overlay').style.display = 'none';
+                document.body.classList.remove('password-locked');
+            }
+        }
+
+        // Enterキーでも入室ボタンを押せるようにする設定
+        document.getElementById('password-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>

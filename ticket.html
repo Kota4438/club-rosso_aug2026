@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チケット申込 - イベント特設サイト</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <div class="logo"><a href="index.html">EVENT LOGO</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Top</a></li>
+                <li><a href="access.html">Access</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h2>TICKET</h2>
+        <p class="subtitle">観覧希望・チケットお申し込み</p>
+
+        <div class="ticket-form-container">
+            <form id="ticketForm" onsubmit="return handleFormSubmit(event)">
+                
+                <div class="form-group">
+                    <label for="name">お名前 <span class="required">必須</span></label>
+                    <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">郵便番号 <span class="required">必須</span></label>
+                    <input type="text" id="zip" name="zip" placeholder="150-0046" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">ご住所 <span class="required">必須</span></label>
+                    <textarea id="address" name="address" rows="3" placeholder="東京都渋谷区松濤1-29-1" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">メールアドレス <span class="required">必須</span></label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tel">電話番号 <span class="required">必須</span></label>
+                    <input type="tel" id="tel" name="tel" placeholder="03-6455-1920" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tickets">希望枚数 <span class="required">必須</span></label>
+                    <select id="tickets" name="tickets" required>
+                        <option value="" disabled selected>選択してください</option>
+                        <option value="1枚">1枚</option>
+                        <option value="2枚">2枚</option>
+                        <option value="3枚">3枚</option>
+                        <option value="4枚">4枚</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">メッセージ・備考</label>
+                    <textarea id="message" name="message" rows="4" placeholder="ご質問やメッセージがあればご記入ください。"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">申し込む</button>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <h3>🎉 お申し込みありがとうございます</h3>
+                <p>テスト送信が正常に完了しました。</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #718093;">※これはパソコン内での動作テストです。実際のデータはまだ送信されていません。</p>
+                <button onclick="resetForm()" class="cta-button" style="margin-top: 20px; background-color: #2f3640;">入力画面に戻る</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // ページのリロードを防ぐ
+            
+            // フォームを非表示にして、完了メッセージを表示する
+            document.getElementById('ticketForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // 画面を上部にスクロールさせる
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+        }
+
+        function resetForm() {
+            // フォームをリセットして再表示する
+            document.getElementById('ticketForm').reset();
+            document.getElementById('ticketForm').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
