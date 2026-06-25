@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    <!-- ナビゲーションメニュー -->
     <header>
         <nav class="nav-container">
             <div class="logo">
@@ -26,52 +25,65 @@
         </nav>
     </header>
 
-    <!-- メインコンテンツエリア -->
     <main class="main-content">
         <h2>ACCESS</h2>
         <p class="subtitle">会場アクセス</p>
 
         <div class="access-container">
-            <!-- 左側：会場情報 -->
             <div class="access-info">
                 <h3>CLUB ROSSO</h3>
-                <p class="address">〒150-0046<br>渋谷区松濤1-29-1 渋谷クロスロードビルB1F</p>
-                <p class="tel">TEL：03-6455-1597</p>
+                <p class="address" style="margin: 15px 0; line-height: 1.6;">
+                    〒150-0046<br>
+                    東京都渋谷区松濤1-29-1渋谷クロスロードビルB1F
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <a href="https://maps.google.com/?q=CLUB+ROSSO" target="_blank" style="color: #8b0000; font-weight: bold; text-decoration: underline;">Google Mapルート表示＞＞</a>
+                </p>
+                <p class="tel">TEL : 03-6455-1920</p>
                 
                 <hr>
                 
-                <h4>【最寄り駅からのアクセス】</h4>
-                <ul class="train-list">
-                    <li>「渋谷駅」ハチ公口より 徒歩約8分</li>
-                    <li>京王井の頭線「神泉駅」北口より 徒歩約5分</li>
+                <ul class="train-list" style="margin-top: 15px;">
+                    <li>JR線「渋谷駅」ハチ公口 徒歩7分</li>
+                    <li>東京メトロ銀座線・京王井の頭線「渋谷駅」 徒歩7分</li>
+                    <li>東急東横線・田園都市線・東京メトロ半蔵門線・副都心線「渋谷駅」 徒歩5分</li>
+                    <li>京王井の頭線「神泉駅」 徒歩5分</li>
                 </ul>
             </div>
 
-            <!-- 右側：Googleマップ埋め込みエリア -->
             <div class="map-container">
-                <!-- 💡 いただいたCLUB ROSSOの正確なピン留めコードに差し替えました（枠に合わせて幅・高さは自動調整にしています） -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6483.37309814982!2d139.69269427388502!3d35.660093631137954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d4b72e26a4f%3A0xf6f6231bedd68df1!2sCLUB%20ROSSO!5e0!3m2!1sen!2sjp!4v1782381395700!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
         </div>
 
-        <!-- 注意事項など -->
-        <div class="route-container">
-            <h3>ご来場のお客様へ</h3>
-            <p>当日は混雑が予想されますので、お時間に余裕を持ってお越しください。専用の駐車場はございませんので、公共の交通機関をご利用いただくか、近隣のコインパーキングをご利用ください。</p>
+        <div class="route-container" style="text-align: left; background: #f8f9fa; padding: 30px; border-radius: 8px; margin-top: 30px;">
+            <h3 style="font-size: 1.2rem; color: #1a1a1a; margin-bottom: 15px; border-left: 4px solid #8b0000; padding-left: 10px;">渋谷駅からのルート案内</h3>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #333; margin-bottom: 25px;">
+                JR渋谷駅ハチ公口を出て109の右側の道を進むと東急百貨店本店のある交差点に出ますので、左手に進んで頂くと一つ目の信号の交差点に1階がファミリーマートのビルがあります。ファミリーマート入り口のすぐ右脇に階段がありますので、そこを降りて頂くと当店入り口があります。
+            </p>
             
-            <div class="notice-box">
-                <h4>お問合せ・会場内のご案内</h4>
-                <ul>
-                    <li>ドリンクにつきましては、ホール内にバーがございます。飲まれたい方はキャッシュオンにてご購入ください（お持ち込みは不可となります）。</li>
-                    <li>イベント内容に関するお問合せは、主催者宛てにメッセージ（Ticketページ）よりご連絡ください。</li>
-                    <li>当日の道に迷われた場合などの緊急連絡は、上記会場の電話番号まで直接お問合せください。</li>
+            <div class="notice-box" style="background: #fff; border-left: 4px solid #d4af37; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                <h4 style="color: #8b0000; margin-bottom: 12px; font-size: 1rem;">ご来場にあたっての注意事項</h4>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="font-size: 0.95rem; margin-bottom: 10px; position: relative; padding-left: 20px; line-height: 1.6; color: #222; font-weight: bold;">
+                        <span style="position: absolute; left: 0; color: #8b0000;">・</span>ドリンクにつきましては、ホール内にバーがございます。飲まれたい方はキャッシュオンにてご購入ください（お持ち込みは不可となります）。
+                    </li>
+                    <li style="font-size: 0.9rem; margin-bottom: 8px; position: relative; padding-left: 20px; color: #444;">
+                        <span style="position: absolute; left: 0; color: #8b0000;">・</span>ビルのエレベーターホールからは入れませんので、階段をご利用ください。
+                    </li>
+                    <li style="font-size: 0.9rem; margin-bottom: 8px; position: relative; padding-left: 20px; color: #444;">
+                        <span style="position: absolute; left: 0; color: #8b0000;">・</span>駐車場はございません。お車でお越しの方は近隣のコインパーキングをご利用ください。
+                    </li>
+                    <li style="font-size: 0.9rem; position: relative; padding-left: 20px; color: #444;">
+                        <span style="position: absolute; left: 0; color: #8b0000;">・</span>店内にはコインロッカーがございませんので、駅のロッカー等をご利用ください。
+                    </li>
                 </ul>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
+        <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
 </body>
