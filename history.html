@@ -3,8 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>近日公開予定 - イベント特設サイト</title>
+    <title>昭和のヒーロー - 吉沢孝太郎"祝還暦"イベント</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* スライドショー専用の追加スタイル */
+        .gallery-main {
+            max-width: 1000px;
+            margin: 140px auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 60vh;
+            margin: 30px auto;
+            background-color: #111;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .gallery-slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        .gallery-slide.active {
+            display: block;
+        }
+        /* 前へ次へボタン */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .arrow-btn:hover {
+            background: #8b0000;
+            border-color: #d4af37;
+        }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+        /* ページカウンター */
+        .counter-box {
+            font-family: 'Georgia', serif;
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .back-profile-btn {
+            margin-top: 30px;
+            display: inline-block;
+            background-color: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .back-profile-btn:hover {
+            background-color: #8b0000;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,27 +96,90 @@
             <ul class="nav-links">
                 <li><a href="index.html">Top</a></li>
                 <li><a href="access.html">Access</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
                 <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="main-content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 60vh;">
-        <div style="background: #fcfcfc; padding: 50px 30px; border-radius: 8px; max-width: 650px; width: 100%; border: 1px solid #eaeaea; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <h2 style="font-size: 2rem; color: #8b0000; margin-bottom: 20px; letter-spacing: 2px;">UNDER CONSTRUCTION</h2>
-            <p style="font-size: 1.2rem; font-weight: bold; color: #111; margin-bottom: 15px;">工事中「近日公開予定」</p>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.8; margin-bottom: 30px;">
-                吉沢孝太郎「６０年の歩み」のコンテンツは、現在公開に向けて準備中です。<br>
-                今しばらくお待ちください。
-            </p>
-            <a href="profile.html" class="cta-button">プロフィールに戻る</a>
+    <main class="gallery-main">
+        <h2>昭和のヒーロー</h2>
+        <p class="subtitle">吉沢孝太郎 連続写真スライドショー</p>
+
+        <div class="gallery-container">
+            <button class="arrow-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+            <button class="arrow-btn next-btn" onclick="changeSlide(1)">❯</button>
+            
+            <div id="slides-wrapper" style="width:100%; height:100%;"></div>
         </div>
+
+        <div class="counter-box">
+            <span id="current-index">1</span> / 50
+        </div>
+
+        <a href="profile.html" class="back-profile-btn">プロフィールに戻る</a>
     </main>
 
     <footer>
-        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
+        <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        const totalImages = 50;
+        let currentIndex = 1;
+        const wrapper = document.getElementById('slides-wrapper');
+
+        // 50枚の画像を自動生成（Windowsのカッコ付き、Macの連番どちらにも対応する判定付き）
+        // 最初の1枚目の読み込みテストを行い、画像形式を自動判別します
+        const testImg = new Image();
+        let isWindowsStyle = false;
+
+        testImg.onload = function() {
+            initGallery(false); // hero1.jpg の形式で生成
+        };
+        testImg.onerror = function() {
+            initGallery(true);  // hero (1).jpg の形式で生成
+        };
+        testImg.src = "hero1.jpg"; // まずMac形式があるかテスト
+
+        function initGallery(winStyle) {
+            isWindowsStyle = winStyle;
+            for (let i = 1; i <= totalImages; i++) {
+                const slide = document.createElement('div');
+                slide.className = `gallery-slide ${i === 1 ? 'active' : ''}`;
+                slide.id = `slide-${i}`;
+                
+                // ファイル名の形式決定
+                const fileName = isWindowsStyle ? `hero (${i}).jpg` : `hero${i}.jpg`;
+                slide.style.backgroundImage = `url('${fileName}')`;
+                
+                wrapper.appendChild(slide);
+            }
+        }
+
+        // スライド切り替え関数
+        function changeSlide(direction) {
+            // 現在の画像を非表示に
+            document.getElementById(`slide-${currentIndex}`).classList.remove('active');
+            
+            // インデックスの計算（最初と最後をループさせる）
+            currentIndex += direction;
+            if (currentIndex > totalImages) currentIndex = 1;
+            if (currentIndex < 1) currentIndex = totalImages;
+            
+            // 次の画像を表示
+            document.getElementById(`slide-${currentIndex}`).classList.add('active');
+            
+            // カウンターの更新
+            document.getElementById('current-index').textContent = currentIndex;
+        }
+
+        // キーボードの左右矢印キーでも操作可能にする設定
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+    </script>
 
 </body>
 </html>
