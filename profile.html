@@ -6,9 +6,97 @@
     <title>Profile - 吉沢孝太郎"祝還暦"イベント</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSSのズレを強制的に修正し、以前の綺麗なレイアウトを確実に再現するスタイル */
+        .profile-vertical-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .profile-card-v {
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            padding: 25px;
+            align-items: center;
+            border: 1px solid #eaeaea;
+        }
+        .profile-img-container-v {
+            flex: 0 0 200px;
+            margin-right: 30px;
+        }
+        .profile-img-v {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .profile-text-v {
+            flex: 1;
+            text-align: left;
+        }
+        .section-badge {
+            display: inline-block;
+            background: #8b0000;
+            color: #fff;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .profile-text-v h3 {
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
+            color: #1a1a1a;
+        }
+        .profile-text-v .ruby {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: normal;
+            margin-left: 5px;
+        }
+        .job-title {
+            font-size: 0.95rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .bio {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #444;
+            margin: 0;
+        }
+        /* スマホ対応（画面が狭いときは縦並びにする） */
+        @media (max-width: 768px) {
+            .profile-card-v {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .profile-img-container-v {
+                margin-right: 0;
+                margin-bottom: 20px;
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 200px;
+            }
+            .profile-text-v {
+                text-align: center;
+            }
+            .bio {
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- ナビゲーションメニュー -->
     <header>
         <nav class="nav-container">
             <div class="logo">
@@ -25,12 +113,14 @@
         </nav>
     </header>
 
-    <main class="main-content">
+    <!-- メインコンテンツエリア -->
+    <main class="main-content" style="text-align: center; padding-top: 130px;">
         <h2>PROFILE</h2>
-        <p class="subtitle">出演者・主催者プロフィール</p>
+        <p class="subtitle" style="color: #666; margin-bottom: 40px;">出演者・主催者プロフィール</p>
 
         <div class="profile-vertical-list">
             
+            <!-- 主役：吉沢孝太郎 -->
             <div class="profile-card-v">
                 <div class="profile-img-container-v">
                     <img src="cast1.jpg" alt="吉沢孝太郎" class="profile-img-v">
@@ -43,17 +133,17 @@
                         1966年生まれ。これまでの豊かな人生の歩みを経て、2026年にめでたく還暦を迎える。本イベントは、これまでの歩みを支えてくださった大切な皆様への感謝を込めて開催される特別な記念祭。
                     </p>
                     
-                    <div style="margin-top: 15px; padding: 10px; border-top: 1px dashed #ccc;">
-                        <p style="font-size: 0.95rem; color: #777; margin-bottom: 5px;">
+                    <!-- 元のUnder Construction文言を残し、Historyページへのリンクを設定 -->
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ccc;">
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 5px; font-weight: bold;">
                             吉沢孝太郎 60年の歩み：Under construction
                         </p>
-                        <p style="font-size: 0.95rem;">
-                            <a href="history.html" style="color: #8b0000; font-weight: bold; text-decoration: underline;">👉 「昭和のヒーロー」写真館はこちら</a>
-                        </p>
+                        <a href="history.html" style="font-size: 0.9rem; color: #8b0000; font-weight: bold; text-decoration: underline;">👉 「昭和のヒーロー」写真館はこちら</a>
                     </div>
                 </div>
             </div>
 
+            <!-- ゲスト：真丘奈央 -->
             <div class="profile-card-v">
                 <div class="profile-img-container-v">
                     <img src="cast2.jpg" alt="真丘奈央" class="profile-img-v">
@@ -68,12 +158,13 @@
                 </div>
             </div>
 
-            <div class="profile-card-v flex-reverse">
-                <div class="profile-text-v text-right-desktop">
+            <!-- 主催者情報（ORGANIZERS） -->
+            <div class="profile-card-v">
+                <div class="profile-text-v">
                     <span class="section-badge">ORGANIZERS</span>
-                    <h3>吉沢孝太郎"祝還暦"イベント実行委員会</h3>
-                    <p class="bio" style="text-align: left;">
-                        吉沢孝太郎の還暦という人生の大切な節目を華やかに、 tenderに、そして温かくお祝いするために結成された有志一同による実行委員会です。ご来場いただくすべてのゲストの皆様に、昭和レトロのノスタルジーと極上のエンターテインメントを楽しんでいただけるよう、真心を込めて当日の運営・サポートを務めさせていただきます。
+                    <h3 style="margin-bottom: 10px;">吉沢孝太郎"祝還暦"イベント実行委員会</h3>
+                    <p class="bio">
+                        吉沢孝太郎の還暦という人生の大切な節目を華やかに、そして温かくお祝いするために結成された有志一同による実行委員会です。ご来場いただくすべてのゲストの皆様に、昭和レトロのノスタルジーと極上のエンターテインメントを楽しんでいただけるよう、真心を込めて当日の運営・サポートを務めさせていただきます。
                     </p>
                 </div>
             </div>
@@ -81,7 +172,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer style="text-align: center; padding: 20px 0; color: #777; font-size: 0.85rem; margin-top: 40px;">
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
