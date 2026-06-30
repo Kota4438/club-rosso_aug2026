@@ -126,8 +126,7 @@
             <!-- スライドショーエリア -->
             <div class="slider-container" id="photo-slider">
                 <div class="slider-wrapper">
-                    <!-- hero (1).JPEG から hero (26).JPEG までの26枚 -->
-                    <!-- JavaScriptで自動生成するため、初期状態で1枚目だけ配置 -->
+                    <!-- 最初の1枚目を初期表示 -->
                     <img src="hero (1).JPEG" alt="昭和のヒーロー" class="active" id="current-slide-img">
                 </div>
                 
@@ -135,8 +134,8 @@
                 <button class="slide-btn btn-prev" onclick="changeSlide(-1)">&lt;</button>
                 <button class="slide-btn btn-next" onclick="changeSlide(1)">&gt;</button>
                 
-                <!-- ページカウンター (1 / 26) -->
-                <div class="slide-counter" id="slide-counter">1 / 26</div>
+                <!-- ページカウンター (合計21枚) -->
+                <div class="slide-counter" id="slide-counter">1 / 21</div>
             </div>
         </div>
     </main>
@@ -145,27 +144,35 @@
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- スライドを切り替えるプログラム -->
+    <!-- スライド切り替えプログラム（合計21枚対応） -->
     <script>
         let currentIndex = 1;
-        const totalSlides = 26;
+        const totalSlides = 21; // heroが16枚 + 追加分が5枚の合計21枚
         const imgElement = document.getElementById('current-slide-img');
         const counterElement = document.getElementById('slide-counter');
 
         function changeSlide(direction) {
             currentIndex += direction;
             
-            // 最初と最後をループさせる設定
+            // ループ設定
             if (currentIndex < 1) {
                 currentIndex = totalSlides;
             } else if (currentIndex > totalSlides) {
                 currentIndex = 1;
             }
             
-            // 画像のパスを「hero (枚数).JPEG」に書き換え
-            imgElement.src = `hero (${currentIndex}).JPEG`;
+            // 画像のファイル名を判定して出し分ける
+            if (currentIndex <= 16) {
+                // 1〜16枚目は hero (1).JPEG 〜 hero (16).JPEG
+                imgElement.src = `hero (${currentIndex}).JPEG`;
+            } else {
+                // 17〜21枚目は (1).jpg 〜 (5).jpg 
+                // 例: 17番目のときは (1).jpg、21番目のときは (5).jpg になるよう計算
+                let subIndex = currentIndex - 16;
+                imgElement.src = `(${subIndex}).jpg`;
+            }
             
-            // カウンターの数字を更新
+            // カウンター表示の更新
             counterElement.textContent = `${currentIndex} / ${totalSlides}`;
         }
     </script>
