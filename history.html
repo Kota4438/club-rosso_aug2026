@@ -3,81 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>昭和のヒーロー - 吉沢孝太郎"祝還暦"イベント</title>
+    <title>吉沢孝太郎 60年の歩み - 祝還暦イベント</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-        .gallery-main {
-            max-width: 1000px;
-            margin: 140px auto 60px;
-            padding: 0 20px;
+        .history-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
             text-align: center;
         }
-        .gallery-container {
+        .uc-title {
+            font-size: 1.5rem;
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .uc-text {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 40px;
+        }
+        .hero-link {
+            display: inline-block;
+            font-size: 1.2rem;
+            color: #d4af37;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        /* スライドショーのレイアウト */
+        .slider-container {
+            position: relative;
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .slider-wrapper {
             position: relative;
             width: 100%;
-            max-width: 800px;
-            height: 60vh;
-            margin: 30px auto;
-            background-color: #111;
-            border: 2px solid #d4af37;
-            border-radius: 8px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #f7f7f7;
+            border-radius: 4px;
         }
-        .gallery-slide {
-            width: 100%;
-            height: 100%;
+        .slider-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             display: none;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
         }
-        .gallery-slide.active {
+        .slider-wrapper img.active {
             display: block;
         }
-        .arrow-btn {
+        /* 左右のめくりボタン */
+        .slide-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             color: #fff;
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        .arrow-btn:hover {
-            background: #8b0000;
-            border-color: #d4af37;
-        }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
-        .counter-box {
-            font-family: 'Georgia', serif;
-            color: #d4af37;
+            border: none;
+            width: 40px;
+            height: 40px;
             font-size: 1.2rem;
-            margin-top: 15px;
             font-weight: bold;
-            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
         }
-        .back-profile-btn {
-            margin-top: 30px;
-            display: inline-block;
-            background-color: #1a1a1a;
-            border: 1px solid #d4af37;
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+        .slide-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
-        .back-profile-btn:hover {
-            background-color: #8b0000;
+        .btn-prev { left: 25px; }
+        .btn-next { right: 25px; }
+        
+        .slide-counter {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -93,101 +109,65 @@
             <ul class="nav-links">
                 <li><a href="index.html">Top</a></li>
                 <li><a href="access.html">Access</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="gallery-main">
-        <h2>昭和のヒーロー</h2>
-        <p class="subtitle">吉沢孝太郎 連続写真スライドショー</p>
-
-        <div class="gallery-container">
-            <button class="arrow-btn prev-btn" onclick="changeSlide(-1)">❮</button>
-            <button class="arrow-btn next-btn" onclick="changeSlide(1)">❯</button>
-            <div id="slides-wrapper" style="width:100%; height:100%;"></div>
+    <main class="main-content" style="padding-top: 130px;">
+        <div class="history-content">
+            <p class="uc-title">吉沢孝太郎 60年の歩み：Under construction（工事中）</p>
+            <p class="uc-text">近日中に更新いたしますので、楽しみにお待ちください。</p>
+            
+            <!-- 「昭和のヒーローｓ」リンク（クリックするとスライドへスクロール） -->
+            <a href="#photo-slider" class="hero-link">👉 昭和のヒーローｓ</a>
+            
+            <!-- スライドショーエリア -->
+            <div class="slider-container" id="photo-slider">
+                <div class="slider-wrapper">
+                    <!-- hero (1).JPEG から hero (26).JPEG までの26枚 -->
+                    <!-- JavaScriptで自動生成するため、初期状態で1枚目だけ配置 -->
+                    <img src="hero (1).JPEG" alt="昭和のヒーロー" class="active" id="current-slide-img">
+                </div>
+                
+                <!-- めくりボタン -->
+                <button class="slide-btn btn-prev" onclick="changeSlide(-1)">&lt;</button>
+                <button class="slide-btn btn-next" onclick="changeSlide(1)">&gt;</button>
+                
+                <!-- ページカウンター (1 / 26) -->
+                <div class="slide-counter" id="slide-counter">1 / 26</div>
+            </div>
         </div>
-
-        <div class="counter-box">
-            <span id="current-index">1</span> / 50
-        </div>
-
-        <a href="profile.html" class="back-profile-btn">プロフィールに戻る</a>
     </main>
 
     <footer>
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
+    <!-- スライドを切り替えるプログラム -->
     <script>
-        const totalImages = 50;
         let currentIndex = 1;
-        const wrapper = document.getElementById('slides-wrapper');
+        const totalSlides = 26;
+        const imgElement = document.getElementById('current-slide-img');
+        const counterElement = document.getElementById('slide-counter');
 
-        // 画像スライド要素をはじめにすべて作成
-        for (let i = 1; i <= totalImages; i++) {
-            const slide = document.createElement('div');
-            slide.className = `gallery-slide ${i === 1 ? 'active' : ''}`;
-            slide.id = `slide-${i}`;
-            wrapper.appendChild(slide);
-        }
-
-        // 💡 各スライドに対して、考えられるファイル名の候補を自動でテストし、
-        // 読み込みに成功した画像を背景にセットする強力なエラー回避プログラム
-        function tryLoadImage(index) {
-            const slideEl = document.getElementById(`slide-${index}`);
-            
-            // 試すファイル名のパターン（小文字、大文字、Windowsカッコ形式など）
-            const patterns = [
-                `hero${index}.jpg`,
-                `hero${index}.JPG`,
-                `hero (${index}).jpg`,
-                `hero (${index}).JPG`,
-                `Hero${index}.jpg`,
-                `Hero${index}.JPG`
-            ];
-
-            let patternIndex = 0;
-
-            function checkNext() {
-                if (patternIndex >= patterns.length) return; // すべて失敗した場合は終了
-                
-                const img = new Image();
-                img.onload = function() {
-                    // 画像が存在した場合は背景にセット
-                    slideEl.style.backgroundImage = `url('${patterns[patternIndex]}')`;
-                };
-                img.onerror = function() {
-                    // 読み込めなかった場合は次のパターンを試す
-                    patternIndex++;
-                    checkNext();
-                };
-                img.src = patterns[patternIndex];
-            }
-
-            checkNext();
-        }
-
-        // 50枚すべてに対して画像チェックを実行
-        for (let i = 1; i <= totalImages; i++) {
-            tryLoadImage(i);
-        }
-
-        // スライド切り替え
         function changeSlide(direction) {
-            document.getElementById(`slide-${currentIndex}`).classList.remove('active');
             currentIndex += direction;
-            if (currentIndex > totalImages) currentIndex = 1;
-            if (currentIndex < 1) currentIndex = totalImages;
-            document.getElementById(`slide-${currentIndex}`).classList.add('active');
-            document.getElementById('current-index').textContent = currentIndex;
+            
+            // 最初と最後をループさせる設定
+            if (currentIndex < 1) {
+                currentIndex = totalSlides;
+            } else if (currentIndex > totalSlides) {
+                currentIndex = 1;
+            }
+            
+            // 画像のパスを「hero (枚数).JPEG」に書き換え
+            imgElement.src = `hero (${currentIndex}).JPEG`;
+            
+            // カウンターの数字を更新
+            counterElement.textContent = `${currentIndex} / ${totalSlides}`;
         }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
-        });
     </script>
 
 </body>
