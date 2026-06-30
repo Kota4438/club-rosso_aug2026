@@ -3,102 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>吉沢孝太郎 60年の歩み - 祝還暦イベント</title>
+    <title>Access - 吉沢孝太郎"祝還暦"イベント</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-        .history-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .uc-title {
-            font-size: 1.5rem;
-            color: #8b0000;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .uc-text {
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 40px;
-        }
-        .hero-link {
-            display: inline-block;
-            font-size: 1.2rem;
-            color: #d4af37;
-            font-weight: bold;
-            text-decoration: underline;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-        /* スライドショーのレイアウト */
-        .slider-container {
-            position: relative;
-            max-width: 500px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #f7f7f7;
-            border-radius: 4px;
-        }
-        .slider-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            display: none;
-        }
-        .slider-wrapper img.active {
-            display: block;
-        }
-        /* 左右のめくりボタン */
-        .slide-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        .slide-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .btn-prev { left: 25px; }
-        .btn-next { right: 25px; }
-        
-        .slide-counter {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #666;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 
+    <!-- ナビゲーションメニュー -->
     <header>
         <nav class="nav-container">
             <div class="logo">
@@ -108,34 +20,45 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Top</a></li>
-                <li><a href="access.html">Access</a></li>
+                <li><a href="access.html" class="active">Access</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="main-content" style="padding-top: 130px;">
-        <div class="history-content">
-            <p class="uc-title">吉沢孝太郎 60年の歩み：Under construction（工事中）</p>
-            <p class="uc-text">近日中に更新いたしますので、楽しみにお待ちください。</p>
-            
-            <!-- 「昭和のヒーローｓ」リンク（クリックするとスライドへスクロール） -->
-            <a href="#photo-slider" class="hero-link">👉 昭和のヒーローｓ</a>
-            
-            <!-- スライドショーエリア -->
-            <div class="slider-container" id="photo-slider">
-                <div class="slider-wrapper">
-                    <!-- 最初の1枚目を初期表示 -->
-                    <img src="hero (1).JPEG" alt="昭和のヒーロー" class="active" id="current-slide-img">
+    <!-- メインコンテンツエリア -->
+    <main class="main-content">
+        <h2>ACCESS</h2>
+        <p class="subtitle">会場アクセス・注意事項</p>
+
+        <div class="access-container">
+            <!-- 会場情報 -->
+            <div class="access-info">
+                <h3>Club Rosso <span class="venue-sub">（クラブロッソ）</span></h3>
+                <p class="address">〒107-0052 東京都港区赤坂6-14-2 赤坂M'sビルB1</p>
+                <p class="tel">TEL: 03-6277-7440</p>
+                
+                <div class="access-details">
+                    <h4>■ 電車でのアクセス</h4>
+                    <ul>
+                        <li>東京メトロ千代田線<strong>「赤坂駅」</strong>6番出口より徒歩5分</li>
+                        <li>東京メトロ大江戸線・日比谷線<strong>「六本木駅」</strong>より徒歩10分</li>
+                    </ul>
                 </div>
-                
-                <!-- めくりボタン -->
-                <button class="slide-btn btn-prev" onclick="changeSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeSlide(1)">&gt;</button>
-                
-                <!-- ページカウンター (合計21枚) -->
-                <div class="slide-counter" id="slide-counter">1 / 21</div>
+
+                <!-- 💡 ドリンクに関する注意書きの修正部分 -->
+                <div class="notice-box">
+                    <p class="notice-title">【ドリンクに関する大切なお知らせ】</p>
+                    <p class="notice-text">
+                        お一人様ワンドリンクご注文頂けます。ご入場受付時にバーカウンターにてドリンク券をお受け取りの上ご注文ください（飲み物の持ち込みは不可となります）。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 地図（Google Maps） -->
+            <div class="access-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.2291942475994!2d139.73241517625126!3d35.67133703051493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b776262b9a7%3A0x6b4fbbf5317730e6!2sClub%20Rosso!5e0!3m2!1sja!2sjp!4v1709971234567!5m2!1sja!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </main>
@@ -143,39 +66,6 @@
     <footer>
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
-
-    <!-- スライド切り替えプログラム（合計21枚対応） -->
-    <script>
-        let currentIndex = 1;
-        const totalSlides = 21; // heroが16枚 + 追加分が5枚の合計21枚
-        const imgElement = document.getElementById('current-slide-img');
-        const counterElement = document.getElementById('slide-counter');
-
-        function changeSlide(direction) {
-            currentIndex += direction;
-            
-            // ループ設定
-            if (currentIndex < 1) {
-                currentIndex = totalSlides;
-            } else if (currentIndex > totalSlides) {
-                currentIndex = 1;
-            }
-            
-            // 画像のファイル名を判定して出し分ける
-            if (currentIndex <= 16) {
-                // 1〜16枚目は hero (1).JPEG 〜 hero (16).JPEG
-                imgElement.src = `hero (${currentIndex}).JPEG`;
-            } else {
-                // 17〜21枚目は (1).jpg 〜 (5).jpg 
-                // 例: 17番目のときは (1).jpg、21番目のときは (5).jpg になるよう計算
-                let subIndex = currentIndex - 16;
-                imgElement.src = `(${subIndex}).jpg`;
-            }
-            
-            // カウンター表示の更新
-            counterElement.textContent = `${currentIndex} / ${totalSlides}`;
-        }
-    </script>
 
 </body>
 </html>
