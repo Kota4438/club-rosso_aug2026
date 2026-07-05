@@ -9,8 +9,8 @@
     <style>
         .history-construction-container {
             max-width: 800px;
-            margin: 60px auto;
-            padding: 40px 20px;
+            margin: 20px auto;
+            padding: 30px 20px;
             text-align: center;
             background: #ffffff;
             border-radius: 8px;
@@ -33,7 +33,6 @@
             margin-bottom: 15px;
             font-weight: 700;
         }
-        /* 💡 1. 文言をシンプルに修正 */
         .history-lead {
             font-size: 1.1rem;
             color: #555;
@@ -42,9 +41,9 @@
             font-weight: bold;
         }
         
-        /* 昭和のヒーローｓ タイトル */
-        .hero-section-title {
-            font-size: 1.4rem;
+        /* 各セクションのタイトルスタイル */
+        .history-section-title {
+            font-size: 1.3rem;
             color: #d4af37;
             font-weight: bold;
             margin: 40px 0 15px 0;
@@ -112,14 +111,14 @@
 
         .back-to-profile {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 40px;
             color: #8b0000;
             font-weight: bold;
             text-decoration: underline;
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 110px;">
 
     <!-- ナビゲーションメニュー -->
     <header>
@@ -139,30 +138,38 @@
     </header>
 
     <!-- メインコンテンツエリア -->
-    <main class="main-content" style="padding-top: 130px;">
+    <main class="main-content">
         <div class="history-construction-container">
             <span class="construction-status">COMING SOON</span>
             <h2 class="history-main-title">吉沢孝太郎 60年の歩み</h2>
-            <!-- 💡 1. 修正文言 -->
             <p class="history-lead">公開まで今しばらくお待ちください。</p>
 
-            <hr style="border: 0; border-top: 1px dashed #eee; margin: 40px 0;">
+            <hr style="border: 0; border-top: 1px dashed #eee; margin: 30px 0;">
 
-            <!-- 📸 「昭和のヒーローｓ」セクション -->
-            <h3 class="hero-section-title">👉 昭和のヒーローｓ</h3>
-            
+            <!-- 📸 セクション1：「昭和のヒーローｓ」 -->
+            <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
             <div class="slider-container">
                 <div class="slider-wrapper">
-                    <!-- 💡 2. 初期表示に1番目の写真をセット -->
-                    <img src="hero (1).JPEG" alt="昭和のヒーロー" id="current-slide-img">
+                    <img src="hero (1).JPEG" alt="昭和のヒーロー" id="hero-img">
                 </div>
-                
-                <!-- 手動めくりボタン -->
-                <button class="slide-btn btn-prev" onclick="changeSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeSlide(1)">&gt;</button>
-                
-                <!-- カウンター（全12枚） -->
-                <div class="slide-counter" id="slide-counter">1 / 12</div>
+                <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
+                <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
+                <div class="slide-counter" id="hero-counter">1 / 12</div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px dashed #eee; margin: 30px 0;">
+
+            <!-- 📸 セクション2：「昭和の夏の思い出」 -->
+            <div class="slider-container">
+                <!-- 💡 タイトルをスライドコンテナの内側に収めてすっきり配置 -->
+                <h3 class="history-section-title" style="margin-top: 10px;">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
+                <div class="slider-wrapper">
+                    <img src="1.JPEG" alt="昭和の夏の思い出" id="summer-img">
+                </div>
+                <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
+                <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
+                <!-- 💡 写真の総数を 29枚 から 33枚 に変更 -->
+                <div class="slide-counter" id="summer-counter">1 / 33</div>
             </div>
 
             <p>
@@ -175,43 +182,49 @@
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- スライド手動切り替えプログラム（ご指定の12枚の順番を完全再現） -->
+    <!-- スライド独立切り替えプログラム -->
     <script>
-        // 💡 2. ご指定いただいた順番通りに画像ファイル名を配列化（計12枚）
-        const photoList = [
-            "hero (1).JPEG",
-            "hero (11).JPEG",
-            "hero (10).JPEG",
-            "hero (2).JPEG",
-            "hero (12).JPEG",
-            "hero (13).JPEG",
-            "hero (14).JPEG",
-            "hero (15).JPEG",
-            "hero (16).JPEG",
-            "(1).jpg",
-            "(2).jpg",
-            "(3).jpg"
+        // ==========================================
+        // 1. 昭和のヒーローｓ（全12枚）の制御
+        // ==========================================
+        const heroList = [
+            "hero (1).JPEG", "hero (11).JPEG", "hero (10).JPEG", "hero (2).JPEG",
+            "hero (12).JPEG", "hero (13).JPEG", "hero (14).JPEG", "hero (15).JPEG",
+            "hero (16).JPEG", "(1).jpg", "(2).jpg", "(3).jpg"
         ];
+        let heroIndex = 0;
+        const heroImg = document.getElementById('hero-img');
+        const heroCounter = document.getElementById('hero-counter');
 
-        let currentIndex = 0; // 0番目＝hero (1).JPEG
-        const imgElement = document.getElementById('current-slide-img');
-        const counterElement = document.getElementById('slide-counter');
+        function changeHeroSlide(direction) {
+            heroIndex += direction;
+            if (heroIndex < 0) heroIndex = heroList.length - 1;
+            if (heroIndex >= heroList.length) heroIndex = 0;
+            heroImg.src = heroList[heroIndex];
+            heroCounter.textContent = `${heroIndex + 1} / ${heroList.length}`;
+        }
 
-        function changeSlide(direction) {
-            currentIndex += direction;
-            
-            // ループ処理（最初と最後を繋ぐ）
-            if (currentIndex < 0) {
-                currentIndex = photoList.length - 1;
-            } else if (currentIndex >= photoList.length) {
-                currentIndex = 0;
-            }
-            
-            // 画像の差し替え
-            imgElement.src = photoList[currentIndex];
-            
-            // カウンターの表示更新（インデックスに+1する）
-            counterElement.textContent = `${currentIndex + 1} / ${photoList.length}`;
+        // ==========================================
+        // 2. 昭和の夏の思い出（全33枚）の制御
+        // ==========================================
+        // 💡 31.JPEG 〜 34.JPEG の追加分を組み込んだ正確な配列リスト（25は除外）
+        const summerList = [
+            "1.JPEG", "2.JPEG", "3.JPEG", "4.JPEG", "5.JPEG", "6.JPEG", "7.JPEG", "8.JPEG", "9.JPEG", "10.JPEG",
+            "11.JPEG", "12.JPEG", "13.JPEG", "14.JPEG", "15.JPEG", "16.JPEG", "17.JPEG", "18.JPEG", "19.JPEG", "20.JPEG",
+            "21.JPEG", "22.JPEG", "23.JPEG", "24.JPEG", "26.JPEG", "27.JPEG", "28.JPEG", "29.JPEG", "30.JPEG",
+            "31.JPEG", "32.JPEG", "33.JPEG", "34.JPEG"
+        ];
+        
+        let summerIndex = 0;
+        const summerImg = document.getElementById('summer-img');
+        const summerCounter = document.getElementById('summer-counter');
+
+        function changeSummerSlide(direction) {
+            summerIndex += direction;
+            if (summerIndex < 0) summerIndex = summerList.length - 1;
+            if (summerIndex >= summerList.length) summerIndex = 0;
+            summerImg.src = summerList[summerIndex];
+            summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
         }
     </script>
 
