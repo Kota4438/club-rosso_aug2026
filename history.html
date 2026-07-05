@@ -37,8 +37,15 @@
             font-size: 1.1rem;
             color: #555;
             line-height: 1.8;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: bold;
+        }
+        
+        /* 💡 昭和のヒーローｓの上の余白を限界まで削るための調整 */
+        .history-hr {
+            border: 0;
+            border-top: 1px dashed #eee;
+            margin: 15px 0; /* 上下の余白を狭くしました */
         }
         
         /* 各セクションのタイトルスタイル */
@@ -46,7 +53,7 @@
             font-size: 1.3rem;
             color: #d4af37;
             font-weight: bold;
-            margin: 40px 0 15px 0;
+            margin: 10px 0 15px 0; /* 上の余白を 40px から 10px に大幅カット */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
@@ -54,7 +61,7 @@
         .slider-container {
             position: relative;
             max-width: 500px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 10px auto;
             background: #fff;
             padding: 15px;
             border-radius: 8px;
@@ -111,7 +118,7 @@
 
         .back-to-profile {
             display: inline-block;
-            margin-top: 40px;
+            margin-top: 30px;
             color: #8b0000;
             font-weight: bold;
             text-decoration: underline;
@@ -144,31 +151,30 @@
             <h2 class="history-main-title">吉沢孝太郎 60年の歩み</h2>
             <p class="history-lead">公開まで今しばらくお待ちください。</p>
 
-            <hr style="border: 0; border-top: 1px dashed #eee; margin: 30px 0;">
+            <hr class="history-hr">
 
             <!-- 📸 セクション1：「昭和のヒーローｓ」 -->
             <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
             <div class="slider-container">
                 <div class="slider-wrapper">
-                    <img src="hero (1).JPEG" alt="昭和のヒーロー" id="hero-img">
+                    <!-- 💡 初期画像の拡張子エラーを避けるため小文字・大文字両方に対応するプログラムに連動 -->
+                    <img src="hero (1).jpeg" alt="昭和のヒーロー" id="hero-img" onerror="this.src='hero (1).JPEG'">
                 </div>
                 <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
                 <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
                 <div class="slide-counter" id="hero-counter">1 / 12</div>
             </div>
 
-            <hr style="border: 0; border-top: 1px dashed #eee; margin: 30px 0;">
+            <hr class="history-hr">
 
             <!-- 📸 セクション2：「昭和の夏の思い出」 -->
+            <h3 class="history-section-title">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
             <div class="slider-container">
-                <!-- 💡 タイトルをスライドコンテナの内側に収めてすっきり配置 -->
-                <h3 class="history-section-title" style="margin-top: 10px;">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
                 <div class="slider-wrapper">
-                    <img src="1.JPEG" alt="昭和の夏の思い出" id="summer-img">
+                    <img src="1.jpeg" alt="昭和の夏の思い出" id="summer-img" onerror="this.src='1.JPEG'">
                 </div>
                 <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
                 <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
-                <!-- 💡 写真の総数を 29枚 から 33枚 に変更 -->
                 <div class="slide-counter" id="summer-counter">1 / 33</div>
             </div>
 
@@ -182,15 +188,29 @@
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- スライド独立切り替えプログラム -->
+    <!-- スライド独立切り替えプログラム（大文字・小文字自動判別機能付き） -->
     <script>
+        // 画像を読み込む関数（大文字・小文字のリンク切れを防止）
+        function loadImageWithFallback(imgElement, baseName, extensions) {
+            let index = 0;
+            imgElement.src = baseName + extensions[index];
+            imgElement.onerror = function() {
+                index++;
+                if (index < extensions.length) {
+                    imgElement.src = baseName + extensions[index];
+                } else {
+                    imgElement.onerror = null; // ループ防止
+                }
+            };
+        }
+
         // ==========================================
         // 1. 昭和のヒーローｓ（全12枚）の制御
         // ==========================================
         const heroList = [
-            "hero (1).JPEG", "hero (11).JPEG", "hero (10).JPEG", "hero (2).JPEG",
-            "hero (12).JPEG", "hero (13).JPEG", "hero (14).JPEG", "hero (15).JPEG",
-            "hero (16).JPEG", "(1).jpg", "(2).jpg", "(3).jpg"
+            "hero (1)", "hero (11)", "hero (10)", "hero (2)",
+            "hero (12)", "hero (13)", "hero (14)", "hero (15)",
+            "hero (16)", "(1)", "(2)", "(3)"
         ];
         let heroIndex = 0;
         const heroImg = document.getElementById('hero-img');
@@ -200,19 +220,21 @@
             heroIndex += direction;
             if (heroIndex < 0) heroIndex = heroList.length - 1;
             if (heroIndex >= heroList.length) heroIndex = 0;
-            heroImg.src = heroList[heroIndex];
+            
+            // jpg, JPEG, jpg どの拡張子でも対応できるように判別
+            const exts = heroIndex >= 9 ? [".jpg", ".JPG", ".jpeg", ".JPEG"] : [".JPEG", ".jpeg", ".jpg", ".JPG"];
+            loadImageWithFallback(heroImg, heroList[heroIndex], exts);
             heroCounter.textContent = `${heroIndex + 1} / ${heroList.length}`;
         }
 
         // ==========================================
         // 2. 昭和の夏の思い出（全33枚）の制御
         // ==========================================
-        // 💡 31.JPEG 〜 34.JPEG の追加分を組み込んだ正確な配列リスト（25は除外）
         const summerList = [
-            "1.JPEG", "2.JPEG", "3.JPEG", "4.JPEG", "5.JPEG", "6.JPEG", "7.JPEG", "8.JPEG", "9.JPEG", "10.JPEG",
-            "11.JPEG", "12.JPEG", "13.JPEG", "14.JPEG", "15.JPEG", "16.JPEG", "17.JPEG", "18.JPEG", "19.JPEG", "20.JPEG",
-            "21.JPEG", "22.JPEG", "23.JPEG", "24.JPEG", "26.JPEG", "27.JPEG", "28.JPEG", "29.JPEG", "30.JPEG",
-            "31.JPEG", "32.JPEG", "33.JPEG", "34.JPEG"
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+            "21", "22", "23", "24", "26", "27", "28", "29", "30",
+            "31", "32", "33", "34"
         ];
         
         let summerIndex = 0;
@@ -223,7 +245,9 @@
             summerIndex += direction;
             if (summerIndex < 0) summerIndex = summerList.length - 1;
             if (summerIndex >= summerList.length) summerIndex = 0;
-            summerImg.src = summerList[summerIndex];
+            
+            const exts = [".JPEG", ".jpeg", ".jpg", ".JPG"];
+            loadImageWithFallback(summerImg, summerList[summerIndex], exts);
             summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
         }
     </script>
