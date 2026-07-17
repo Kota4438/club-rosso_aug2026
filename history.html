@@ -155,12 +155,10 @@
             <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
             <div class="slider-container">
                 <div class="slider-wrapper">
-                    <!-- 初期表示される画像を「hero (17).JPEG」に設定 -->
                     <img src="hero (17).JPEG" alt="昭和のヒーロー" id="hero-img" onerror="this.src='hero (17).jpeg'">
                 </div>
                 <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
                 <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
-                <!-- 画像の総数は 13枚 -->
                 <div class="slide-counter" id="hero-counter">1 / 13</div>
             </div>
 
@@ -174,7 +172,6 @@
                 </div>
                 <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
                 <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
-                <!-- 画像の総数は 37枚（35〜38を追加・25番欠番対応） -->
                 <div class="slide-counter" id="summer-counter">1 / 37</div>
             </div>
 
@@ -203,7 +200,7 @@
             };
         }
 
-        // 1. 昭和のヒーローｓ（hero (17) を先頭にした全13枚）
+        // 1. 昭和のヒーローｓ（全13枚）
         const heroList = [
             "hero (17)", "hero (1)", "hero (11)", "hero (10)", "hero (2)",
             "hero (12)", "hero (13)", "hero (14)", "hero (15)",
@@ -237,7 +234,10 @@
             summerIndex += direction;
             if (summerIndex < 0) summerIndex = summerList.length - 1;
             if (summerIndex >= summerList.length) summerIndex = 0;
-            const exts = summerList[summerIndex] === "３０" ? [".jpeg", ".JPEG", ".jpg", ".JPG"] : [".JPEG", ".jpeg", ".jpg", ".JPG"];
+            
+            // 💡 修正ポイント：30番だけ特殊扱いしていた分岐ルールを撤廃し、全画像共通で大文字の「.JPEG」を最優先で探すように統一しました
+            const exts = [".JPEG", ".jpeg", ".jpg", ".JPG"];
+            
             loadImageWithFallback(summerImg, summerList[summerIndex], exts);
             summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
         }
