@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>60年の歩み - 吉沢孝太郎"祝還暦"イベント</title>
+    <!-- ⚠️ 検索エンジンに絶対に登録させない設定 -->
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
     <style>
         .history-construction-container {
             max-width: 800px;
-            margin: 60px auto;
-            padding: 40px 20px;
+            margin: 20px auto;
+            padding: 30px 20px;
             text-align: center;
             background: #ffffff;
             border-radius: 8px;
@@ -33,29 +34,33 @@
             margin-bottom: 15px;
             font-weight: 700;
         }
-        /* 💡 1. 文言をシンプルに修正 */
         .history-lead {
             font-size: 1.1rem;
             color: #555;
             line-height: 1.8;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
         
-        /* 昭和のヒーローｓ タイトル */
-        .hero-section-title {
-            font-size: 1.4rem;
+        .history-hr {
+            border: 0;
+            border-top: 1px dashed #eee;
+            margin: 15px 0;
+        }
+        
+        .history-section-title {
+            font-size: 1.3rem;
             color: #d4af37;
             font-weight: bold;
-            margin: 40px 0 15px 0;
+            margin: 10px 0 15px 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* スライドショーのレイアウト */
+        /* スライドショーのスタイル */
         .slider-container {
             position: relative;
             max-width: 500px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 10px auto;
             background: #fff;
             padding: 15px;
             border-radius: 8px;
@@ -78,7 +83,6 @@
             object-fit: contain;
         }
         
-        /* 左右のめくりボタン */
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -119,7 +123,7 @@
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 110px;">
 
     <!-- ナビゲーションメニュー -->
     <header>
@@ -138,31 +142,40 @@
         </nav>
     </header>
 
-    <!-- メインコンテンツエリア -->
-    <main class="main-content" style="padding-top: 130px;">
+    <!-- メインコンテンツ -->
+    <main class="main-content">
         <div class="history-construction-container">
             <span class="construction-status">COMING SOON</span>
             <h2 class="history-main-title">吉沢孝太郎 60年の歩み</h2>
-            <!-- 💡 1. 修正文言 -->
             <p class="history-lead">公開まで今しばらくお待ちください。</p>
 
-            <hr style="border: 0; border-top: 1px dashed #eee; margin: 40px 0;">
+            <hr class="history-hr">
 
-            <!-- 📸 「昭和のヒーローｓ」セクション -->
-            <h3 class="hero-section-title">👉 昭和のヒーローｓ</h3>
-            
+            <!-- 📸 セクション1：「昭和のヒーローｓ」 -->
+            <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
             <div class="slider-container">
                 <div class="slider-wrapper">
-                    <!-- 💡 2. 初期表示に1番目の写真をセット -->
-                    <img src="hero (1).JPEG" alt="昭和のヒーロー" id="current-slide-img">
+                    <!-- 初期表示される画像を「hero (17).JPEG」に設定 -->
+                    <img src="hero (17).JPEG" alt="昭和のヒーロー" id="hero-img" onerror="this.src='hero (17).jpeg'">
                 </div>
-                
-                <!-- 手動めくりボタン -->
-                <button class="slide-btn btn-prev" onclick="changeSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeSlide(1)">&gt;</button>
-                
-                <!-- カウンター（全12枚） -->
-                <div class="slide-counter" id="slide-counter">1 / 12</div>
+                <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
+                <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
+                <!-- 画像の総数は 13枚 -->
+                <div class="slide-counter" id="hero-counter">1 / 13</div>
+            </div>
+
+            <hr class="history-hr">
+
+            <!-- 📸 セクション2：「昭和の夏の思い出」 -->
+            <h3 class="history-section-title">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <img src="１.JPEG" alt="昭和の夏の思い出" id="summer-img" onerror="this.src='１.jpeg'">
+                </div>
+                <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
+                <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
+                <!-- 画像の総数は 37枚（35〜38を追加・25番欠番対応） -->
+                <div class="slide-counter" id="summer-counter">1 / 37</div>
             </div>
 
             <p>
@@ -175,45 +188,59 @@
         <p>© 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- スライド手動切り替えプログラム（ご指定の12枚の順番を完全再現） -->
+    <!-- スライドプログラム -->
     <script>
-        // 💡 2. ご指定いただいた順番通りに画像ファイル名を配列化（計12枚）
-        const photoList = [
-            "hero (1).JPEG",
-            "hero (11).JPEG",
-            "hero (10).JPEG",
-            "hero (2).JPEG",
-            "hero (12).JPEG",
-            "hero (13).JPEG",
-            "hero (14).JPEG",
-            "hero (15).JPEG",
-            "hero (16).JPEG",
-            "(1).jpg",
-            "(2).jpg",
-            "(3).jpg"
+        function loadImageWithFallback(imgElement, baseName, extensions) {
+            let index = 0;
+            imgElement.src = baseName + extensions[index];
+            imgElement.onerror = function() {
+                index++;
+                if (index < extensions.length) {
+                    imgElement.src = baseName + extensions[index];
+                } else {
+                    imgElement.onerror = null;
+                }
+            };
+        }
+
+        // 1. 昭和のヒーローｓ（hero (17) を先頭にした全13枚）
+        const heroList = [
+            "hero (17)", "hero (1)", "hero (11)", "hero (10)", "hero (2)",
+            "hero (12)", "hero (13)", "hero (14)", "hero (15)",
+            "hero (16)", "(1)", "(2)", "(3)"
         ];
+        let heroIndex = 0;
+        const heroImg = document.getElementById('hero-img');
+        const heroCounter = document.getElementById('hero-counter');
 
-        let currentIndex = 0; // 0番目＝hero (1).JPEG
-        const imgElement = document.getElementById('current-slide-img');
-        const counterElement = document.getElementById('slide-counter');
+        function changeHeroSlide(direction) {
+            heroIndex += direction;
+            if (heroIndex < 0) heroIndex = heroList.length - 1;
+            if (heroIndex >= heroList.length) heroIndex = 0;
+            const exts = heroList[heroIndex].startsWith("hero") ? [".JPEG", ".jpeg", ".jpg", ".JPG"] : [".jpg", ".JPG", ".jpeg", ".JPEG"];
+            loadImageWithFallback(heroImg, heroList[heroIndex], exts);
+            heroCounter.textContent = `${heroIndex + 1} / ${heroList.length}`;
+        }
 
-        function changeSlide(direction) {
-            currentIndex += direction;
-            
-            // ループ処理（最初と最後を繋ぐ）
-            if (currentIndex < 0) {
-                currentIndex = photoList.length - 1;
-            } else if (currentIndex >= photoList.length) {
-                currentIndex = 0;
-            }
-            
-            // 画像の差し替え
-            imgElement.src = photoList[currentIndex];
-            
-            // カウンターの表示更新（インデックスに+1する）
-            counterElement.textContent = `${currentIndex + 1} / ${photoList.length}`;
+        // 2. 昭和の夏の思い出（全37枚）
+        const summerList = [
+            "１", "２", "３", "４", "５", "６", "７", "８", "９", "１０",
+            "１１", "１２", "１３", "１４", "１５", "１６", "１７", "１８", "１９", "２０",
+            "２１", "２２", "２３", "２４", "２６", "２７", "２８", "２９", "３０",
+            "３１", "３２", "３３", "３４", "３５", "３６", "３７", "３８"
+        ];
+        let summerIndex = 0;
+        const summerImg = document.getElementById('summer-img');
+        const summerCounter = document.getElementById('summer-counter');
+
+        function changeSummerSlide(direction) {
+            summerIndex += direction;
+            if (summerIndex < 0) summerIndex = summerList.length - 1;
+            if (summerIndex >= summerList.length) summerIndex = 0;
+            const exts = summerList[summerIndex] === "３０" ? [".jpeg", ".JPEG", ".jpg", ".JPG"] : [".JPEG", ".jpeg", ".jpg", ".JPG"];
+            loadImageWithFallback(summerImg, summerList[summerIndex], exts);
+            summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
         }
     </script>
-
 </body>
 </html>
