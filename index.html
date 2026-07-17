@@ -3,131 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>60年の歩み - 吉沢孝太郎"祝還暦"イベント</title>
+    <title>吉沢孝太郎"祝還暦"イベント 特設サイト</title>
+    <!-- ⚠️ 検索エンジンに絶対に登録させない設定 -->
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
     <style>
-        .history-construction-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 30px 20px;
-            text-align: center;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        /* 🔐 パスワード画面のスタイル */
+        #password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
         }
-        .construction-status {
-            display: inline-block;
+        .pass-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .pass-box h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        .pass-input {
+            padding: 12px;
+            font-size: 1.2rem;
+            width: 220px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 20px;
+            background: #fff;
+            color: #333;
+        }
+        .pass-btn {
             background: #8b0000;
             color: #fff;
-            padding: 6px 16px;
-            font-size: 0.9rem;
+            border: none;
+            padding: 12px 35px;
+            font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 50px;
-            margin-bottom: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
             letter-spacing: 1px;
         }
-        .history-main-title {
-            font-size: 2rem;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            font-weight: 700;
+        .pass-btn:hover {
+            background: #a00000;
         }
-        .history-lead {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        
-        /* 💡 昭和のヒーローｓの上の余白を限界まで削るための調整 */
-        .history-hr {
-            border: 0;
-            border-top: 1px dashed #eee;
-            margin: 15px 0; /* 上下の余白を狭くしました */
-        }
-        
-        /* 各セクションのタイトルスタイル */
-        .history-section-title {
-            font-size: 1.3rem;
-            color: #d4af37;
-            font-weight: bold;
-            margin: 10px 0 15px 0; /* 上の余白を 40px から 10px に大幅カット */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        /* スライドショーのレイアウト */
-        .slider-container {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto 10px auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #f7f7f7;
-            border-radius: 4px;
-        }
-        .slider-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        
-        /* 左右のめくりボタン */
-        .slide-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        .slide-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .btn-prev { left: 25px; }
-        .btn-next { right: 25px; }
-        
-        .slide-counter {
+        #pass-error {
+            color: #ff4444;
             margin-top: 15px;
-            font-size: 0.95rem;
-            color: #666;
+            display: none;
             font-weight: bold;
         }
 
-        .back-to-profile {
-            display: inline-block;
-            margin-top: 30px;
-            color: #8b0000;
+        /* ⏰ カウントダウンタイマーのデザイン */
+        .countdown-container {
+            margin: 15px auto 25px auto;
+            padding: 15px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #d4af37;
+            border-radius: 6px;
+            max-width: 450px;
+        }
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #d4af37;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
             font-weight: bold;
-            text-decoration: underline;
+        }
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+        .countdown-number {
+            font-family: 'Georgia', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,184,0,0.6);
+            line-height: 1;
+        }
+        .countdown-unit {
+            font-size: 0.75rem;
+            color: #cccccc;
+            margin-top: 4px;
+        }
+        .countdown-expired {
+            font-size: 1.2rem;
+            color: #ffb800;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
     </style>
 </head>
-<body style="padding-top: 110px;">
+<body>
 
-    <!-- ナビゲーションメニュー -->
+    <!-- 🔐 パスワード入力オーバーレイ（無限ぐるぐるローダーは削除済） -->
+    <div id="password-screen">
+        <div class="pass-box">
+            <h2>CLUB ROSSO</h2>
+            <p style="margin-bottom: 25px; font-size: 0.95rem; color: #ccc;">ご案内したパスワードを入力してください</p>
+            <input type="password" id="site-password" class="pass-input" placeholder="パスワード">
+            <br>
+            <button onclick="checkPassword()" class="pass-btn">入場する</button>
+            <p id="pass-error">パスワードが違います</p>
+        </div>
+    </div>
+
+    <!-- トップページ本編 -->
     <header>
         <nav class="nav-container">
             <div class="logo">
@@ -136,7 +141,7 @@
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Top</a></li>
+                <li><a href="index.html" class="active">Top</a></li>
                 <li><a href="access.html">Access</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
@@ -144,112 +149,114 @@
         </nav>
     </header>
 
-    <!-- メインコンテンツエリア -->
-    <main class="main-content">
-        <div class="history-construction-container">
-            <span class="construction-status">COMING SOON</span>
-            <h2 class="history-main-title">吉沢孝太郎 60年の歩み</h2>
-            <p class="history-lead">公開まで今しばらくお待ちください。</p>
+    <div class="slider-background">
+        <div class="slide slide1"></div>
+        <div class="slide slide2"></div>
+    </div>
 
-            <hr class="history-hr">
-
-            <!-- 📸 セクション1：「昭和のヒーローｓ」 -->
-            <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <!-- 💡 初期画像の拡張子エラーを避けるため小文字・大文字両方に対応するプログラムに連動 -->
-                    <img src="hero (1).jpeg" alt="昭和のヒーロー" id="hero-img" onerror="this.src='hero (1).JPEG'">
-                </div>
-                <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
-                <div class="slide-counter" id="hero-counter">1 / 12</div>
+    <main class="hero-scroll-container">
+        <div class="retro-container">
+            <h1 class="retro-title-main">吉沢孝太郎 "祝還暦" イベント</h1>
+            
+            <div class="retro-title-sub">
+                <span class="small-prefix" style="font-size: 1.15rem !important;">元宝塚歌劇団花組男役</span>
+                <span class="retro-star-name">真丘奈央</span>
+                <span class="onstage-text">オンステージ</span>
             </div>
 
-            <hr class="history-hr">
+            <p class="retro-date-clean">2026.8.15 (Sat)</p>
 
-            <!-- 📸 セクション2：「昭和の夏の思い出」 -->
-            <h3 class="history-section-title">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <img src="1.jpeg" alt="昭和の夏の思い出" id="summer-img" onerror="this.src='1.JPEG'">
-                </div>
-                <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
-                <div class="slide-counter" id="summer-counter">1 / 33</div>
-            </div>
-
-            <p>
-                <a href="profile.html" class="back-to-profile">← プロフィールページに戻る</a>
+            <p class="retro-time-clean" style="font-family: 'Georgia', sans-serif; font-size: 1.4rem; color: #ffffff; letter-spacing: 2px; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+                Open 11:30am / Start 12:00pm
             </p>
+
+            <!-- ⏰ カウントダウンタイマー表示エリア -->
+            <div class="countdown-container">
+                <div class="countdown-label">開演まであと</div>
+                <div id="countdown" class="countdown-display">
+                    <div class="countdown-item"><span id="days" class="countdown-number">00</span><span class="countdown-unit">日</span></div>
+                    <div class="countdown-item"><span id="hours" class="countdown-number">00</span><span class="countdown-unit">時間</span></div>
+                    <div class="countdown-item"><span id="minutes" class="countdown-number">00</span><span class="countdown-unit">分</span></div>
+                    <div class="countdown-item"><span id="seconds" class="countdown-number">00</span><span class="countdown-unit">秒</span></div>
+                </div>
+            </div>
+
+            <div class="retro-venue-box">
+                <p class="venue-name">CLUB ROSSO</p>
+                <p class="venue-address">渋谷区松濤1-29-1 渋谷クロスロードビルB1F</p>
+                <p class="event-price" style="color: #ffb800 !important; font-size: 1.2rem !important;">料金：4,500円/人 <span style="font-size: 0.8em; font-weight: normal; margin-left: 4px;">(全席自由・ワンドリンク付)</span></p>
+            </div>
+
+            <a href="ticket.html" class="cta-button retro-btn">チケットを申し込む</a>
         </div>
     </main>
 
     <footer>
-        <p>© 2026 Event Organizer. All Rights Reserved.</p>
+        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- スライド独立切り替えプログラム（大文字・小文字自動判別機能付き） -->
+    <!-- プログラム（パスワード処理 ＆ カウントダウン） -->
     <script>
-        // 画像を読み込む関数（大文字・小文字のリンク切れを防止）
-        function loadImageWithFallback(imgElement, baseName, extensions) {
-            let index = 0;
-            imgElement.src = baseName + extensions[index];
-            imgElement.onerror = function() {
-                index++;
-                if (index < extensions.length) {
-                    imgElement.src = baseName + extensions[index];
-                } else {
-                    imgElement.onerror = null; // ループ防止
-                }
-            };
-        }
+        /* =========================================
+           1. パスワード処理プログラム
+           ========================================= */
+        // ⚠️ ここにゲストへ案内したパスワードを設定してください（小文字・大文字に注意）
+        const CORRECT_PASSWORD = "rosso";
 
-        // ==========================================
-        // 1. 昭和のヒーローｓ（全12枚）の制御
-        // ==========================================
-        const heroList = [
-            "hero (1)", "hero (11)", "hero (10)", "hero (2)",
-            "hero (12)", "hero (13)", "hero (14)", "hero (15)",
-            "hero (16)", "(1)", "(2)", "(3)"
-        ];
-        let heroIndex = 0;
-        const heroImg = document.getElementById('hero-img');
-        const heroCounter = document.getElementById('hero-counter');
+        // ページ読み込み時に、すでに認証済みかチェックする
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem("siteUnlocked") === "true") {
+                // すでにパスワード通過済みなら、最初からパスワード画面を隠す
+                document.getElementById("password-screen").style.display = "none";
+            }
+        });
 
-        function changeHeroSlide(direction) {
-            heroIndex += direction;
-            if (heroIndex < 0) heroIndex = heroList.length - 1;
-            if (heroIndex >= heroList.length) heroIndex = 0;
+        // 入場ボタンが押された時の処理
+        function checkPassword() {
+            const inputPass = document.getElementById("site-password").value;
             
-            // jpg, JPEG, jpg どの拡張子でも対応できるように判別
-            const exts = heroIndex >= 9 ? [".jpg", ".JPG", ".jpeg", ".JPEG"] : [".JPEG", ".jpeg", ".jpg", ".JPG"];
-            loadImageWithFallback(heroImg, heroList[heroIndex], exts);
-            heroCounter.textContent = `${heroIndex + 1} / ${heroList.length}`;
+            if (inputPass === CORRECT_PASSWORD) {
+                // 正解の場合：認証済みとしてブラウザに記憶させ、画面をフワッと消す
+                sessionStorage.setItem("siteUnlocked", "true");
+                const screen = document.getElementById("password-screen");
+                screen.style.transition = "opacity 0.4s ease";
+                screen.style.opacity = "0";
+                setTimeout(() => {
+                    screen.style.display = "none";
+                }, 400); // 0.4秒後に完全に消す
+            } else {
+                // 不正解の場合：エラーメッセージを表示
+                document.getElementById("pass-error").style.display = "block";
+            }
         }
 
-        // ==========================================
-        // 2. 昭和の夏の思い出（全33枚）の制御
-        // ==========================================
-        const summerList = [
-            "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "26", "27", "28", "29", "30",
-            "31", "32", "33", "34"
-        ];
-        
-        let summerIndex = 0;
-        const summerImg = document.getElementById('summer-img');
-        const summerCounter = document.getElementById('summer-counter');
+        /* =========================================
+           2. カウントダウンプログラム
+           ========================================= */
+        const targetDate = new Date("2026/08/15 12:00:00").getTime();
 
-        function changeSummerSlide(direction) {
-            summerIndex += direction;
-            if (summerIndex < 0) summerIndex = summerList.length - 1;
-            if (summerIndex >= summerList.length) summerIndex = 0;
-            
-            const exts = [".JPEG", ".jpeg", ".jpg", ".JPG"];
-            loadImageWithFallback(summerImg, summerList[summerIndex], exts);
-            summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown").innerHTML = "<div class='countdown-expired'>本日のイベントは終了いたしました。</div>";
+            }
         }
+
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 
 </body>
