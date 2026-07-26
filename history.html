@@ -27,11 +27,11 @@
             letter-spacing: 2px;
         }
 
-        /* 📷 画像2枚上下密着スタイル */
+        /* 📷 画像2枚上下密着スタイル（顔写真） */
         .photo-area {
             max-width: 650px;
             margin: 0 auto 30px auto;
-            line-height: 0; /* 画像下の余白を完全排除 */
+            line-height: 0;
             background: #000;
             border-radius: 6px;
             overflow: hidden;
@@ -47,7 +47,7 @@
             border: none;
         }
 
-        /* 🚧 Coming Soon エリア */
+        /* 🚧 Coming Soon 表示 */
         .coming-soon-title {
             text-align: center;
             font-size: 2rem;
@@ -57,36 +57,74 @@
             letter-spacing: 2px;
         }
 
-        /* 📜 昭和のコンテンツエリア */
-        .showa-section {
+        /* 🎠 スライドショーの共通スタイル */
+        .slideshow-section {
             background: #fafafa;
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             border: 1px solid #eee;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
-        .showa-title {
+        .slideshow-title {
             font-size: 1.3rem;
             font-weight: bold;
             color: #8b0000;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             padding-bottom: 6px;
             border-bottom: 2px solid #d4af37;
+            text-align: center;
         }
 
-        .showa-content {
-            font-size: 1.02rem;
-            line-height: 1.85;
-            color: #333;
+        .slideshow-container {
+            position: relative;
+            max-width: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            background: #000;
         }
 
-        .showa-content p {
-            margin-bottom: 12px;
+        .slide-frame {
+            display: none;
+            width: 100%;
         }
 
-        .showa-content p:last-child {
-            margin-bottom: 0;
+        .slide-frame.active {
+            display: block;
+        }
+
+        .slide-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* スライド切替ボタン (左右矢印) */
+        .prev-btn, .next-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 12px 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: none;
+        }
+
+        .next-btn {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(139, 0, 0, 0.8);
         }
 
         .back-to-top-btn {
@@ -126,34 +164,38 @@
         <div class="history-container">
             <h2 class="history-main-title">60年の歩み</h2>
 
-            <!-- 1. 顔写真（Coming Soonの上） -->
+            <!-- 1. 顔写真 -->
             <div class="photo-area">
-                <!-- 上段：Faces1.JPEG -->
-                <img src="Faces1.JPEG"
-                     alt="顔写真 1"
-                     onerror="this.src='Faces1.jpeg'; this.onerror=function(){this.src='Faces1.jpg';};">
-
-                <!-- 下段：Faces2.JPEG -->
-                <img src="Faces2.JPEG"
-                     alt="顔写真 2"
-                     onerror="this.src='Faces2.jpeg'; this.onerror=function(){this.src='Faces2.jpg';};">
+                <img src="Faces1.JPEG" alt="顔写真 1" onerror="this.src='Faces1.jpeg'; this.onerror=function(){this.src='Faces1.jpg';};">
+                <img src="Faces2.JPEG" alt="顔写真 2" onerror="this.src='Faces2.jpeg'; this.onerror=function(){this.src='Faces2.jpg';};">
             </div>
 
             <!-- 2. Coming Soon 表示 -->
             <div class="coming-soon-title">Coming soon</div>
 
-            <!-- 3. 昭和のヒーローs ＆ 昭和の夏の想い出 -->
-            <div class="showa-section">
-                <div class="showa-title">昭和のヒーローs</div>
-                <div class="showa-content">
-                    <p>ウルトラマン、仮面ライダー、タイガーマスク、マジンガーZ……。昭和の時代、子どもたちの胸を躍らせた数々のヒーローたち。</p>
+            <!-- 3. 昭和のヒーローs (スライドショー) -->
+            <div class="slideshow-section">
+                <div class="slideshow-title">昭和のヒーローs</div>
+                <div class="slideshow-container" id="hero-slider">
+                    <div class="slide-frame active"><img src="Hero1.JPG" alt="昭和のヒーロー 1" onerror="this.src='Hero1.jpg'; this.onerror=function(){this.src='Hero1.jpeg';};"></div>
+                    <div class="slide-frame"><img src="Hero2.JPG" alt="昭和のヒーロー 2" onerror="this.src='Hero2.jpg'; this.onerror=function(){this.src='Hero2.jpeg';};"></div>
+                    <div class="slide-frame"><img src="Hero3.JPG" alt="昭和のヒーロー 3" onerror="this.src='Hero3.jpg'; this.onerror=function(){this.src='Hero3.jpeg';};"></div>
+                    
+                    <button class="prev-btn" onclick="moveSlide('hero-slider', -1)">&#10094;</button>
+                    <button class="next-btn" onclick="moveSlide('hero-slider', 1)">&#10095;</button>
                 </div>
             </div>
 
-            <div class="showa-section">
-                <div class="showa-title">昭和の夏の想い出</div>
-                <div class="showa-content">
-                    <p>セミの鳴き声が響く境内、駄菓子屋のアイス、日焼けした肌と入道雲。あの頃の夏には、今も色褪せない特別な輝きがありました。</p>
+            <!-- 4. 昭和の夏の想い出 (スライドショー) -->
+            <div class="slideshow-section">
+                <div class="slideshow-title">昭和の夏の想い出</div>
+                <div class="slideshow-container" id="summer-slider">
+                    <div class="slide-frame active"><img src="Summer1.JPG" alt="昭和の夏の想い出 1" onerror="this.src='Summer1.jpg'; this.onerror=function(){this.src='Summer1.jpeg';};"></div>
+                    <div class="slide-frame"><img src="Summer2.JPG" alt="昭和の夏の想い出 2" onerror="this.src='Summer2.jpg'; this.onerror=function(){this.src='Summer2.jpeg';};"></div>
+                    <div class="slide-frame"><img src="Summer3.JPG" alt="昭和の夏の想い出 3" onerror="this.src='Summer3.jpg'; this.onerror=function(){this.src='Summer3.jpeg';};"></div>
+
+                    <button class="prev-btn" onclick="moveSlide('summer-slider', -1)">&#10094;</button>
+                    <button class="next-btn" onclick="moveSlide('summer-slider', 1)">&#10095;</button>
                 </div>
             </div>
 
@@ -166,5 +208,28 @@
     <footer>
         <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
+
+    <!-- スライド切り替え用JavaScript -->
+    <script>
+        function moveSlide(sliderId, direction) {
+            const container = document.getElementById(sliderId);
+            const slides = container.getElementsByClassName('slide-frame');
+            let activeIndex = -1;
+
+            for (let i = 0; i < slides.length; i++) {
+                if (slides[i].classList.contains('active')) {
+                    activeIndex = i;
+                    slides[i].classList.remove('active');
+                    break;
+                }
+            }
+
+            let newIndex = activeIndex + direction;
+            if (newIndex >= slides.length) newIndex = 0;
+            if (newIndex < 0) newIndex = slides.length - 1;
+
+            slides[newIndex].classList.add('active');
+        }
+    </script>
 </body>
 </html>
