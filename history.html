@@ -4,119 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>60年の歩み - 吉沢孝太郎"祝還暦"イベント</title>
-    <!-- ⚠️ 検索エンジンに絶対に登録させない設定 -->
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        .history-construction-container {
+        /* ページ全体コンテナ */
+        .history-container {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 20px auto 50px auto;
             padding: 30px 20px;
-            text-align: center;
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .construction-status {
-            display: inline-block;
-            background: #8b0000;
-            color: #fff;
-            padding: 6px 16px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
+
         .history-main-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #1a1a1a;
-            margin-bottom: 15px;
+            text-align: center;
+            margin-bottom: 30px;
             font-weight: 700;
-        }
-        .history-lead {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        
-        .history-hr {
-            border: 0;
-            border-top: 1px dashed #eee;
-            margin: 15px 0;
-        }
-        
-        .history-section-title {
-            font-size: 1.3rem;
-            color: #d4af37;
-            font-weight: bold;
-            margin: 10px 0 15px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
         }
 
-        /* スライドショーのスタイル */
-        .slider-container {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto 10px auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* 📷 画像2枚上下密着スタイル */
+        .photo-area {
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            line-height: 0; /* 画像下の余白を完全排除 */
+            background: #000;
+            border-radius: 6px;
             overflow: hidden;
-            background: #f7f7f7;
-            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .slider-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        
-        .slide-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
+
+        .photo-area img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
             border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
         }
-        .slide-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .btn-prev { left: 25px; }
-        .btn-next { right: 25px; }
-        
-        .slide-counter {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #666;
+
+        /* 🚧 Coming Soon エリア */
+        .coming-soon-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #8b0000;
             font-weight: bold;
+            margin: 20px 0 40px 0;
+            letter-spacing: 2px;
+        }
+
+        /* 📜 昭和のコンテンツエリア */
+        .showa-section {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .showa-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .showa-content {
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: #333;
+        }
+
+        .showa-content p {
+            margin-bottom: 12px;
+        }
+
+        .showa-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .back-to-top-btn {
+            text-align: center;
+            margin-top: 40px;
         }
 
         .back-to-profile {
             display: inline-block;
-            margin-top: 30px;
             color: #8b0000;
             font-weight: bold;
             text-decoration: underline;
@@ -144,103 +123,48 @@
 
     <!-- メインコンテンツ -->
     <main class="main-content">
-        <div class="history-construction-container">
-            <span class="construction-status">COMING SOON</span>
-            <h2 class="history-main-title">吉沢孝太郎 60年の歩み</h2>
-            <p class="history-lead">公開まで今しばらくお待ちください。</p>
+        <div class="history-container">
+            <h2 class="history-main-title">60年の歩み</h2>
 
-            <hr class="history-hr">
+            <!-- 1. 顔写真（Coming Soonの上） -->
+            <div class="photo-area">
+                <!-- 上段：Faces1.JPEG -->
+                <img src="Faces1.JPEG"
+                     alt="顔写真 1"
+                     onerror="this.src='Faces1.jpeg'; this.onerror=function(){this.src='Faces1.jpg';};">
 
-            <!-- 📸 セクション1：「昭和のヒーローｓ」 -->
-            <h3 class="history-section-title">👉 昭和のヒーローｓ｜Heroes of the Showa Era</h3>
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <img src="hero (17).JPEG" alt="昭和のヒーロー" id="hero-img" onerror="this.src='hero (17).jpeg'">
-                </div>
-                <button class="slide-btn btn-prev" onclick="changeHeroSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeHeroSlide(1)">&gt;</button>
-                <div class="slide-counter" id="hero-counter">1 / 13</div>
+                <!-- 下段：Faces2.JPEG -->
+                <img src="Faces2.JPEG"
+                     alt="顔写真 2"
+                     onerror="this.src='Faces2.jpeg'; this.onerror=function(){this.src='Faces2.jpg';};">
             </div>
 
-            <hr class="history-hr">
+            <!-- 2. Coming Soon 表示 -->
+            <div class="coming-soon-title">Coming soon</div>
 
-            <!-- 📸 セクション2：「昭和の夏の思い出」 -->
-            <h3 class="history-section-title">👉 昭和の夏の思い出｜Memories of Showa Summers</h3>
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <img src="１.JPEG" alt="昭和の夏の思い出" id="summer-img" onerror="this.src='１.jpeg'">
+            <!-- 3. 昭和のヒーローs ＆ 昭和の夏の想い出 -->
+            <div class="showa-section">
+                <div class="showa-title">昭和のヒーローs</div>
+                <div class="showa-content">
+                    <p>ウルトラマン、仮面ライダー、タイガーマスク、マジンガーZ……。昭和の時代、子どもたちの胸を躍らせた数々のヒーローたち。</p>
                 </div>
-                <button class="slide-btn btn-prev" onclick="changeSummerSlide(-1)">&lt;</button>
-                <button class="slide-btn btn-next" onclick="changeSummerSlide(1)">&gt;</button>
-                <div class="slide-counter" id="summer-counter">1 / 37</div>
             </div>
 
-            <p>
+            <div class="showa-section">
+                <div class="showa-title">昭和の夏の想い出</div>
+                <div class="showa-content">
+                    <p>セミの鳴き声が響く境内、駄菓子屋のアイス、日焼けした肌と入道雲。あの頃の夏には、今も色褪せない特別な輝きがありました。</p>
+                </div>
+            </div>
+
+            <div class="back-to-top-btn">
                 <a href="profile.html" class="back-to-profile">← プロフィールページに戻る</a>
-            </p>
+            </div>
         </div>
     </main>
 
     <footer>
-        <p>© 2026 Event Organizer. All Rights Reserved.</p>
+        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
-
-    <!-- スライドプログラム -->
-    <script>
-        function loadImageWithFallback(imgElement, baseName, extensions) {
-            let index = 0;
-            imgElement.src = baseName + extensions[index];
-            imgElement.onerror = function() {
-                index++;
-                if (index < extensions.length) {
-                    imgElement.src = baseName + extensions[index];
-                } else {
-                    imgElement.onerror = null;
-                }
-            };
-        }
-
-        // 1. 昭和のヒーローｓ（全13枚）
-        const heroList = [
-            "hero (17)", "hero (1)", "hero (11)", "hero (10)", "hero (2)",
-            "hero (12)", "hero (13)", "hero (14)", "hero (15)",
-            "hero (16)", "(1)", "(2)", "(3)"
-        ];
-        let heroIndex = 0;
-        const heroImg = document.getElementById('hero-img');
-        const heroCounter = document.getElementById('hero-counter');
-
-        function changeHeroSlide(direction) {
-            heroIndex += direction;
-            if (heroIndex < 0) heroIndex = heroList.length - 1;
-            if (heroIndex >= heroList.length) heroIndex = 0;
-            const exts = heroList[heroIndex].startsWith("hero") ? [".JPEG", ".jpeg", ".jpg", ".JPG"] : [".jpg", ".JPG", ".jpeg", ".JPEG"];
-            loadImageWithFallback(heroImg, heroList[heroIndex], exts);
-            heroCounter.textContent = `${heroIndex + 1} / ${heroList.length}`;
-        }
-
-        // 2. 昭和の夏の思い出（全37枚）
-        const summerList = [
-            "１", "２", "３", "４", "５", "６", "７", "８", "９", "１０",
-            "１１", "１２", "１３", "１４", "１５", "１６", "１７", "１８", "１９", "２０",
-            "２１", "２２", "２３", "２４", "２６", "２７", "２８", "２９", "３０",
-            "３１", "３２", "３３", "３４", "３５", "３６", "３７", "３８"
-        ];
-        let summerIndex = 0;
-        const summerImg = document.getElementById('summer-img');
-        const summerCounter = document.getElementById('summer-counter');
-
-        function changeSummerSlide(direction) {
-            summerIndex += direction;
-            if (summerIndex < 0) summerIndex = summerList.length - 1;
-            if (summerIndex >= summerList.length) summerIndex = 0;
-            
-            // 💡 修正ポイント：30番だけ特殊扱いしていた分岐ルールを撤廃し、全画像共通で大文字の「.JPEG」を最優先で探すように統一しました
-            const exts = [".JPEG", ".jpeg", ".jpg", ".JPG"];
-            
-            loadImageWithFallback(summerImg, summerList[summerIndex], exts);
-            summerCounter.textContent = `${summerIndex + 1} / ${summerList.length}`;
-        }
-    </script>
 </body>
 </html>
