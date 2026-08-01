@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>60年の歩み - 吉沢孝太郎"祝還暦"イベント</title>
+    <title>60年の歩み - 吉沢孝太郎"祝還暦"イベント (テスト用)</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
 
     <style>
         /* ページ全体コンテナ */
         .history-container {
-            max-width: 800px;
-            margin: 20px auto 50px auto;
-            padding: 30px 20px;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 15px 20px 30px 20px;
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -22,15 +22,72 @@
             font-size: 2.2rem;
             color: #1a1a1a;
             text-align: center;
-            margin-bottom: 30px;
+            margin-top: 10px;
+            margin-bottom: 20px;
             font-weight: 700;
             letter-spacing: 2px;
         }
 
-        /* 📷 画像2枚上下密着スタイル（顔写真） */
+        /* 📌 インデックス（目次ナビゲーション） */
+        .history-index-nav {
+            margin: 0 auto 30px auto;
+            max-width: 780px;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+        }
+
+        .history-index-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 12px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .history-index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .history-index-list li a {
+            display: block;
+            padding: 8px 14px;
+            background-color: #ffffff;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+        }
+
+        .history-index-list li a:hover {
+            background-color: #8b0000;
+            color: #ffffff;
+            border-color: #8b0000;
+        }
+
+        .index-era {
+            font-weight: bold;
+            color: #8b0000;
+            margin-right: 8px;
+        }
+
+        .history-index-list li a:hover .index-era {
+            color: #ffffff;
+        }
+
+        /* 📷 顔写真エリア */
         .photo-area {
             max-width: 650px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 40px auto;
             line-height: 0;
             background: #000;
             border-radius: 6px;
@@ -42,105 +99,317 @@
             width: 100%;
             height: auto;
             display: block;
-            margin: 0;
-            padding: 0;
-            border: none;
         }
 
-        /* 🚧 Coming Soon 表示 */
-        .coming-soon-title {
+        /* --------------------------------------------------
+            前編・後編 区切りヘッダー
+        -------------------------------------------------- */
+        .part-header {
             text-align: center;
-            font-size: 2rem;
-            color: #8b0000;
+            margin: 40px 0 30px 0;
+            padding: 10px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin: 20px 0 40px 0;
+            border-radius: 6px;
             letter-spacing: 2px;
         }
 
-        /* 🎠 スライドショーの共通スタイル */
-        .slideshow-section {
-            background: #fafafa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            margin-bottom: 35px;
+        /* --------------------------------------------------
+            年代別セクションのレイアウト
+        -------------------------------------------------- */
+        .era-section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed #ccc;
+            scroll-margin-top: 90px; /* スクロール時の位置調整 */
         }
 
-        .slideshow-title {
-            font-size: 1.3rem;
-            font-weight: bold;
+        .era-title {
+            font-size: 1.5rem;
             color: #8b0000;
-            margin-bottom: 15px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #d4af37;
-            text-align: center;
+            font-weight: bold;
+            border-left: 5px solid #d4af37;
+            padding-left: 12px;
+            margin-bottom: 20px;
         }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 650px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            background: #000;
+        /* 📌 インデックスへ戻るボタン */
+        .back-to-index {
+            text-align: right;
+            margin-top: 25px;
         }
 
-        .slide-frame {
-            display: none;
-            width: 100%;
+        .back-to-index a {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #666;
+            text-decoration: none;
+            background-color: #f2f2f2;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            transition: all 0.2s ease;
         }
 
-        .slide-frame.active {
-            display: block;
+        .back-to-index a:hover {
+            background-color: #8b0000;
+            color: #ffffff;
+            border-color: #8b0000;
         }
 
-        .slide-frame img {
+        /* 左2/3・右1/3 2カラム構造 (左文章・右写真) */
+        .era-grid {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* 左側：文章 (約2/3 = 65%) */
+        .era-text-col {
+            flex: 0 0 65%;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #333;
+            text-align: justify;
+        }
+
+        .era-text-col p {
+            margin-bottom: 1.2em;
+        }
+
+        .era-text-col p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 右側：写真枠 (約1/3 = 32%) */
+        .era-side-photo-col {
+            flex: 0 0 32%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .era-side-photo-col img, .era-side-photo-col video {
             width: 100%;
             height: auto;
-            display: block;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            object-fit: cover;
         }
 
-        /* スライド切替ボタン (左右矢印) */
-        .prev-btn, .next-btn {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 12px 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.3s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0, 0, 0, 0.4);
-            border: none;
+        /* --------------------------------------------------
+            左1/3写真・右2/3文章 2カラム構造
+        -------------------------------------------------- */
+        .era-grid-reverse {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
-        .next-btn {
-            right: 0;
-            border-radius: 3px 0 0 3px;
+        /* 左側：写真・動画枠 (約1/3 = 32%) */
+        .era-left-photo-col {
+            flex: 0 0 32%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .prev-btn:hover, .next-btn:hover {
-            background-color: rgba(139, 0, 0, 0.8);
+        .era-left-photo-col img, .era-left-photo-col video {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            object-fit: cover;
         }
 
-        .back-to-top-btn {
+        /* 右側：文章 (約2/3 = 65%) */
+        .era-right-text-col {
+            flex: 0 0 65%;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #333;
+            text-align: justify;
+        }
+
+        .era-right-text-col p {
+            margin-bottom: 1.2em;
+        }
+
+        .era-right-text-col p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 写真下のキャプション（説明文）スタイル */
+        .photo-caption {
+            font-size: 0.85rem;
+            color: #444;
+            margin-top: 6px;
+            line-height: 1.4;
             text-align: center;
-            margin-top: 40px;
+            font-weight: bold;
         }
 
-        .back-to-profile {
-            display: inline-block;
-            color: #8b0000;
+        /* --------------------------------------------------
+            左1/3写真・中央1/3文章・右1/3写真 3カラム構造 (1980年代用)
+        -------------------------------------------------- */
+        .era-3col-grid {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .era-3col-left {
+            flex: 0 0 31%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .era-3col-center {
+            flex: 0 0 34%;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #333;
+            text-align: justify;
+        }
+
+        .era-3col-center p {
+            margin-bottom: 1.2em;
+        }
+
+        .era-3col-center p:last-child {
+            margin-bottom: 0;
+        }
+
+        .era-3col-right {
+            flex: 0 0 31%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .era-3col-left img, .era-3col-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            object-fit: cover;
+        }
+
+        /* 文章下のサブギャラリー（右展開・並列横スクロール） */
+        .era-bottom-gallery {
+            margin-top: 15px;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            align-items: center;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .era-bottom-gallery img, .era-bottom-gallery video {
+            height: 160px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        /* 🎬 動画エリア (圧縮版動画への対応) */
+        .video-container {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        .video-container video {
+            width: 100%;
+            height auto;
+            display: block;
+            outline: none;
+            background-color: #000;
+        }
+
+        .video-caption {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #444;
             font-weight: bold;
-            text-decoration: underline;
+        }
+
+        /* ファミリー見出し */
+        .sub-family-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-left: 8px;
+            border-left: 4px solid #8b0000;
+        }
+
+        /* 文章テキスト共通 */
+        .family-description, .section-text {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* 📱 スマホ対応（横幅768px以下） */
+        @media (max-width: 768px) {
+            .era-grid, .era-grid-reverse, .era-3col-grid {
+                flex-direction: column;
+            }
+            .era-text-col, .era-side-photo-col,
+            .era-left-photo-col, .era-right-text-col,
+            .era-3col-left, .era-3col-center, .era-3col-right {
+                flex: 100%;
+                width: 100%;
+            }
+            .era-side-photo-col, .era-left-photo-col,
+            .era-3col-left, .era-3col-right {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            .era-side-photo-col img, .era-side-photo-col video,
+            .era-left-photo-col img, .era-left-photo-col video,
+            .era-3col-left img, .era-3col-right img {
+                width: 180px;
+                flex-shrink: 0;
+            }
+        }
+
+        .back-to-top-btn { text-align: center; margin-top: 40px; }
+        .back-to-profile { color: #8b0000; font-weight: bold; text-decoration: underline; }
+
+        /* 🎫 ナビゲーションバー：Ticketボタン */
+        .btn-ticket {
+            background-color: transparent !important;
+            color: inherit !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            font-weight: normal !important;
         }
     </style>
 </head>
-<body style="padding-top: 110px;">
+<body style="padding-top: 70px;">
 
     <!-- ナビゲーションメニュー -->
     <header>
@@ -164,117 +433,702 @@
         <div class="history-container">
             <h2 class="history-main-title">60年の歩み</h2>
 
+            <!-- 📌 年代別インデックス (目次) -->
+            <div id="history-index" class="history-index-nav">
+                <div class="history-index-title">INDEX</div>
+                <ul class="history-index-list">
+                    <li><a href="#era-1960"><span class="index-era">1960年代</span> ～原点～</a></li>
+                    <li><a href="#era-1970"><span class="index-era">1970年代</span> ～スポーツ少年から青春時代へ～</a></li>
+                    <li><a href="#era-1980"><span class="index-era">1980年代</span> ～高校‐大学、DJ音楽、そして人生の視野が広がる～</a></li>
+                    <li><a href="#era-1990"><span class="index-era">1990年代</span> ～金融の世界へ、そしてヨーロッパへ～</a></li>
+                    <li><a href="#era-2000"><span class="index-era">2000年代</span> ～再びロンドンへ～</a></li>
+                    <li><a href="#era-2010"><span class="index-era">2010年代</span> ～仕事も人生も、大きな転機～</a></li>
+                    <li><a href="#era-2020"><span class="index-era">2020年代</span> ～そして還暦へ・未来への躍進～</a></li>
+                </ul>
+            </div>
+
             <!-- 1. 顔写真 -->
             <div class="photo-area">
                 <img src="Faces1.JPEG" alt="顔写真 1">
                 <img src="Faces2.JPEG" alt="顔写真 2">
             </div>
 
-            <!-- 2. Coming Soon 表示 -->
-            <div class="coming-soon-title">Coming soon</div>
+            <!-- 2. 本文コンテンツエリア -->
+            <div class="history-content-area">
 
-            <!-- 3. 昭和のヒーローs (英語併記スライドショー) -->
-            <div class="slideshow-section">
-                <div class="slideshow-title">昭和のヒーローｓ｜Heroes of the Showa era</div>
-                <div class="slideshow-container" id="hero-slider">
-                    <div class="slide-frame active"><img src="hero (1).JPEG" alt="昭和のヒーロー 1"></div>
-                    <div class="slide-frame"><img src="hero (2).JPEG" alt="昭和のヒーロー 2"></div>
-                    <div class="slide-frame"><img src="hero (3).JPEG" alt="昭和のヒーロー 3"></div>
-                    <div class="slide-frame"><img src="(1).jpg" alt="昭和のヒーロー (1)"></div>
-                    <div class="slide-frame"><img src="(2).jpg" alt="昭和のヒーロー (2)"></div>
-                    <div class="slide-frame"><img src="(3).jpg" alt="昭和のヒーロー (3)"></div>
-                    <div class="slide-frame"><img src="hero (10).JPEG" alt="昭和のヒーロー 10"></div>
-                    <div class="slide-frame"><img src="hero (11).JPEG" alt="昭和のヒーロー 11"></div>
-                    <div class="slide-frame"><img src="hero (12).JPEG" alt="昭和のヒーロー 12"></div>
-                    <div class="slide-frame"><img src="hero (13).JPEG" alt="昭和のヒーロー 13"></div>
-                    <div class="slide-frame"><img src="hero (14).JPEG" alt="昭和のヒーロー 14"></div>
-                    <div class="slide-frame"><img src="hero (15).JPEG" alt="昭和のヒーロー 15"></div>
-                    <div class="slide-frame"><img src="hero (16).JPEG" alt="昭和のヒーロー 16"></div>
-                    <div class="slide-frame"><img src="hero (17).JPEG" alt="昭和のヒーロー 17"></div>
+                <!-- 【前編ヘッダー】 -->
+                <div class="part-header">【 前 編 】</div>
+                
+              <!-- 【1960年代 ～原点～】 -->
+                <section id="era-1960" class="era-section">
+                    <h3 class="era-title">１９６６年代 ～原点～</h3>
+                    <div class="era-grid">
+                        
+                        <!-- 左側：文章 (約2/3) -->
+                        <div class="era-text-col">
+                            <p>１９６６年（丙午）８月１９日、群馬県伊勢崎市で父・孝夫と母・太恵の長男として生まれる。</p>
+                            <p>父は６人兄弟の４男（５番目）。農業科学を専攻した国立大理系肌の公務員で、畑づくりや園芸、絵画に写真と、自然や表現好きな趣味人。また、道場通いを日課としていた五段の弓道家でもあり、豊かな感性と凛とした静観が同居する人物。母（旧姓・橋田）は７人兄弟長女（１番目）。高校時代は全日本庭球選手で、書道師範の顔も持つ。家業である縫製工場（元は伊勢崎銘仙の反物卸）を手伝っていた。</p>
+                            <p>どちらの家系も地元に深く根を張り、辿れる限りでも平安時代の東国武士に繋がるようなので、血統書付きの大和朝廷下の騎馬隊グンマー族（笑）。</p>
+                            <p>そんな文武両道の両親の元で、２歳上の姉と共に育った。姉は２３歳で豪州のターンブル家へ嫁ぎ、２人の娘に恵まれ、現在は夫とシドニーで生活を送っている。</p>
+                        </div>
+
+                        <!-- 右側：写真表示枠 (約1/3スペース) -->
+                        <div class="era-side-photo-col">
+                            <img src="原点０.JPEG" alt="原点0">
+                            <img src="原点１.JPEG" alt="原点1">
+                            <img src="原点２.JPEG" alt="原点2">
+                            <img src="原点３IMG_5946.JPEG" alt="原点3IMG_5946">
+                        </div>
+                    </div>
+
+                    <!-- 文章下：追加写真ギャラリー -->
+                    <div class="era-bottom-gallery">
+                        <img src="原点５.JPEG" alt="原点5">
+                        <img src="原点４.JPEG" alt="原点4">
+                        <img src="原点７.JPEG" alt="原点7">
+                        <img src="IMG_6016.JPEG" alt="IMG_6016">
+                        <img src="1970年代IMG_6050.JPEG" alt="1970年代IMG_6050">
+                        <img src="原点IMG_5992.JPEG" alt="原点IMG_5992">
+                        <img src="IMG_6635.JPEG" alt="IMG_6635">
+                        <img src="IMG_6636.JPEG" alt="IMG_6636">
+                        <img src="原点_母の還暦祝.JPEG" alt="原点_母の還暦祝">
+                        <img src="原点IMG_6641.JPEG" alt="原点IMG_6641">
+                    </div>
+
+                    <!-- 𠮷澤＆橋田ファミリー 見出し -->
+                    <div class="sub-family-title">𠮷澤＆橋田ファミリー</div>
+
+                    <!-- 𠮷澤＆橋田ファミリー 見出し下の文章 -->
+                    <p class="family-description">
+                        核家族化が進んだ現代とは対照的に、両親共に兄弟が多く、地元をはじめ横浜や広島など、ことあるごとに親戚が集まる賑やかなファミリーだった。中でも歳が近かった母方の従兄弟たちとは、広島、東京、伊勢崎とお互いの街を往来して良く遊んだ。その名残で、今でも広島弁はそれなりに話せる（自称ｗ）。
+                    </p>
+
+                    <!-- ファミリーギャラリー -->
+                    <div class="era-bottom-gallery">
+                        <img src="IMG_5959.JPEG" alt="IMG_5959">
+                        <div>
+                            <img src="原点_祖父橋田栄太郎.JPEG" alt="原点_祖父橋田栄太郎">
+                            <div class="photo-caption">祖父・橋田栄太郎_錬士六段</div>
+                        </div>
+                        <img src="IMG_6830.JPEG" alt="IMG_6830">
+                        <img src="原点３IMG_6101.JPEG" alt="原点3IMG_6101">
+                        <img src="原点６IMG_5945.JPEG" alt="原点6IMG_5945">
+                        <img src="原点３IMG_6014.JPEG" alt="原点3IMG_6014">
+                        <img src="原点３IMG_5948.JPEG" alt="原点3IMG_5948">
+                        <img src="原点３IMG_5958.JPEG" alt="原点3IMG_5958">
+                        <img src="原点IMG_6075.JPEG" alt="原点IMG_6075">
+                        <img src="原点３IMG_6019.JPEG" alt="原点3IMG_6019">
+                        <img src="IMG_6086.JPEG" alt="IMG_6086">
+                        <img src="原点３IMG_6015.JPEG" alt="原点3IMG_6015">
+                        <img src="原点３IMG_6045.JPEG" alt="原点3IMG_6045">
+                        <img src="原点３IMG_6052.JPEG" alt="原点3IMG_6052">
+                        <img src="原点３IMG_6053.JPEG" alt="原点3IMG_6053">
+                        <img src="原点３IMG_6078.JPEG" alt="原点3IMG_6078">
+                        <img src="原点３IMG_6054.JPEG" alt="原点3IMG_6054">
+                        <img src="原点３IMG_6092.JPEG" alt="原点3IMG_6092">
+                        <img src="原点３IMG_6093.JPEG" alt="原点3IMG_6093">
+                        <img src="原点３IMG_6094.JPEG" alt="原点3IMG_6094">
+                        <img src="原点３IMG_6622.JPEG" alt="原点3IMG_6622">
+                        <img src="原点３IMG_6099.JPEG" alt="原点3IMG_6099">
+                        <img src="原点３IMG_6116.JPEG" alt="原点3IMG_6116">
+                        <img src="原点３IMG_6100.JPEG" alt="原点3IMG_6100">
+                        <img src="原点３IMG_6105.JPEG" alt="原点3IMG_6105">
+                        <img src="原点３IMG_6117.JPEG" alt="原点3IMG_6117">
+                    </div>
+
+                    <!-- 幼少期の文章 -->
+                    <p class="section-text">
+                        こうした環境の中で、市内の西園保育園、南幼稚園で伸びやかな幼少期を過ごした。
+                    </p>
+
+                    <!-- 幼少期ギャラリー -->
+                    <div class="era-bottom-gallery">
+                        <img src="原点２IMG_6043.JPEG" alt="原点2IMG_6043">
+                        <img src="IMG_6003.JPEG" alt="IMG_6003">
+                        <img src="原点IMG_6004.JPEG" alt="原点IMG_6004">
+                        <img src="原点IMG_5974.JPEG" alt="原点IMG_5974">
+                        <img src="原点２IMG_5983.JPEG" alt="原点2IMG_5983">
+                    </div>
+
+                    <!-- INDEXへ戻るボタン -->
+                    <div class="back-to-index">
+                        <a href="#history-index">▲ INDEXへ戻る</a>
+                    </div>
+                </section>
+                
+                <!-- 【1970年代 ～スポーツ少年から青春時代へ～】 -->
+       <!-- 【１９７０年代 ～スポーツ少年から青春時代へ～】 -->
+                <section id="era-1970" class="era-section">
+                    <h3 class="era-title">1970年代 ～スポーツ少年から青春時代へ～</h3>
+                    <div class="era-grid">
+                        
+                        <!-- 左側：文章 (約2/3) -->
+                        <div class="era-text-col">
+                            <p>伊勢崎市立南小学校時代は、とにかく体を動かすことが好きだった。</p>
+                            <p>野球、水泳、スキー、市内スキークラブ、サッカースポーツ少年団…。左ウイングとして副キャプテンも務めた。</p>
+                            <p>市立第一中学校では当初サッカー部へ入部するつもりだった。しかし、小学校時代の憧れの先輩たちが"ビーバップ"スタイルへ変貌し、スパイクのかかとを踏みつぶしてプレーする姿を見て断念。</p>
+                            <p>母の影響もあり軟式庭球部へ転向。中学3年の中体連では市内3位となり、県大会にも出場した。芸術面では、マンガに始まり絵を描くことが得意で、書道は教室に習いながら初段を取得した。</p>
+                        </div>
+
+                        <!-- 右側：写真表示枠 (上から順に3枚) -->
+                        <div class="era-side-photo-col">
+                            <img src="IMG_6112.JPEG" alt="IMG_6112">
+                            <img src="1970年代IMG_6104.JPEG" alt="1970年代IMG_6104">
+                            <img src="1970年代IMG_6163.JPEG" alt="1970年代IMG_6163">
+                        </div>
+                    </div>
+
+                    <!-- 文章下：写真ギャラリー（添付の2枚を削除済み） -->
+                    <div class="era-bottom-gallery">
+                        <img src="IMG_6140.JPEG" alt="IMG_6140">
+                        <img src="IMG_6147.JPEG" alt="IMG_6147">
+                        <img src="IMG_6146.JPEG" alt="IMG_6146">
+                        <img src="IMG_6148.JPEG" alt="IMG_6148">
+                        <img src="IMG_6114.JPEG" alt="IMG_6114">
+                        <img src="IMG_6098.JPEG" alt="IMG_6098">
+                        <img src="IMG_6046.JPEG" alt="IMG_6046">
+                        <img src="IMG_6113.JPEG" alt="IMG_6113">
+                        <img src="IMG_6120.JPEG" alt="IMG_6120">
+                        <img src="IMG_6122.JPEG" alt="IMG_6122">
+                        <img src="IMG_6132.JPEG" alt="IMG_6132">
+                        <img src="IMG_6149.JPEG" alt="IMG_6149">
+                        <img src="IMG_6167.JPEG" alt="IMG_6167">
+                        <img src="1970年代IMG_6164.JPEG" alt="1970年代IMG_6164">
+                    </div>
+
+                    <!-- INDEXへ戻るボタン -->
+                    <div class="back-to-index">
+                        <a href="#history-index">▲ INDEXへ戻る</a>
+                    </div>
+                </section>
+                
+                    <!-- INDEXへ戻るボタン -->
+                    <div class="back-to-index">
+                        <a href="#history-index">▲ INDEXへ戻る</a>
+                    </div>
+                </section>
+
+
+              <style>
+/* ==========================================
+   全体の共通設定
+   ========================================== */
+.decade-1980s {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+.decade-1980s h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* ==========================================
+   PCレイアウト（デフォルト：3分割）
+   ========================================== */
+.main-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* 左右の写真カラム (幅 各 1/3) */
+.photo-column-left,
+.photo-column-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 中央の本文カラム (幅 1/3) */
+.text-column {
+  flex: 1;
+}
+
+/* PC時の並び順設定 */
+.photo-column-left { order: 1; }
+.text-column        { order: 2; }
+.photo-column-right { order: 3; }
+
+/* ==========================================
+   画像表示設定（縦横比の自動調整）
+   ========================================== */
+.img-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.img-container figure {
+  margin: 0;
+}
+
+.img-container img {
+  width: 100%;
+  height: 220px; /* 画像の統一表示高さ */
+  object-fit: contain; /* 縦長画像も切れずに全面表示 */
+  background-color: #f4f4f4; /* 縦長画像左右の余白背景色 */
+  border: 1px solid #ddd;
+  display: block;
+}
+
+.img-container figcaption {
+  font-size: 0.75rem; /* モバイル・PC共通 小フォント */
+  color: #666;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* 動画エリア */
+.video-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.video-section video {
+  max-width: 100%;
+  height: auto;
+}
+
+.video-title {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* ギャラリー（右展開・横スクロール表示） */
+.gallery-section {
+  margin-top: 30px;
+}
+
+.gallery-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gallery-item {
+  flex: 0 0 180px; /* カルーセル表示幅 */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 140px; /* ギャラリー画像の表示高さ */
+  object-fit: contain;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  display: block;
+}
+
+.gallery-item figcaption {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ==========================================
+   モバイル用レイアウト（画面幅768px以下）
+   ========================================== */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  /* 表示順序の変更：本文 → 左写真 → 右写真 */
+  .text-column        { order: 1; width: 100%; }
+  .photo-column-left { order: 2; width: 100%; margin-top: 20px; }
+  .photo-column-right { order: 3; width: 100%; margin-top: 20px; }
+
+  /* モバイル時の写真群：横スライド（グリッド表示にする場合は変更可） */
+  .photo-column-left,
+  .photo-column-right {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .photo-column-left .img-container,
+  .photo-column-right .img-container {
+    flex: 0 0 220px; /* モバイル時の画像横幅 */
+    margin-bottom: 0;
+  }
+}
+</style>
+
+<div class="decade-1980s">
+                <section id="era-1980" class="era-section">
+                    <style>
+                        /* 1980年代レスポンシブスタイル */
+                        .era-1980-grid {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 20px;
+                            align-items: flex-start;
+                        }
+                        .era-1980-text { flex: 1.2 1 300px; order: 1; }
+                        .era-1980-left { flex: 1 1 200px; order: 2; display: flex; flex-direction: column; gap: 12px; }
+                        .era-1980-right { flex: 1 1 200px; order: 3; display: flex; flex-direction: column; gap: 12px; }
+
+                        .era-1980-photo-col img {
+                            width: 100%;
+                            height: auto;
+                            max-height: 400px;
+                            object-fit: contain;
+                            border-radius: 6px;
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        }
+
+                        @media (max-width: 768px) {
+                            .era-1980-text { order: 1; width: 100%; }
+                            .era-1980-left {
+                                order: 2; width: 100%; flex-direction: row; overflow-x: auto;
+                                padding-bottom: 10px; -webkit-overflow-scrolling: touch;
+                            }
+                            .era-1980-right {
+                                order: 3; width: 100%; flex-direction: row; overflow-x: auto;
+                                padding-bottom: 10px; -webkit-overflow-scrolling: touch;
+                            }
+                            .era-1980-left img, .era-1980-right img {
+                                flex: 0 0 auto;
+                                width: auto;
+                                height: 220px;
+                                object-fit: contain;
+                            }
+                        }
+                    </style>
+
+                    <h3 class="era-title">1980年代 ～高校‐大学、DJ音楽、そして人生の視野が広がる～</h3>
                     
-                    <button class="prev-btn" onclick="moveSlide('hero-slider', -1)">&#10094;</button>
-                    <button class="next-btn" onclick="moveSlide('hero-slider', 1)">&#10095;</button>
-                </div>
-            </div>
+                    <div class="era-1980-grid">
+                        <!-- 本文 -->
+                        <div class="era-1980-text">
+                            <p style="margin-bottom: 1.2em;">高校は県内の男子校（前橋高校）へ進学。しかし自由奔放だった自分には秀才揃いの校風が少々窮屈で、気がつけば自分自身が"ビーバップ化"してしまう。勉強は二の次になったものの、応援部と軟式庭球部で青春を満喫。高校3年では群馬大学杯3位入賞を果たした。</p>
+                            <p style="margin-bottom: 1.2em;">大学への現役進学は叶わず、駿台予備校大宮校で１年間の浪人時代を過ごす。そこから週一でお茶の水本校に通った帰りに、渋谷の「La Scala」でディスコDJパフォーマンスに魅了され、後に人生を通じて続くレコードのDJ編集と収集趣味が始まった。</p>
+                            <p style="margin-bottom: 1.2em;">早稲田大学社会科学部へ合格した際、自宅からの通学を促されたが、独立願望の強さから、一般教養課程の2年間は中野区の風呂なしアパートで１人暮らしを始めた。近くの銭湯へ通い、時には背中いっぱいの刺青を入れた常連客に水がかかって怒鳴られるなど、今では笑い話になる経験も少なくなかった。</p>
+                            <p style="margin-bottom: 1.2em;">大学後半の2年間は、世田谷区東玉川へ移り住んだ。ゼミ（元野村證券の教授による日本経済の実証研究）には一応真面目に出席していたものの、キャンパスライフはアルバイトとサークル活動が中心だった。典型的な「高田馬場に通う学生」の枠にはまらず、日常生活の軸足はすっかり東横線から渋谷&日比谷線の沿線エリアへと移っていた。</p>
+                            <p style="margin-bottom: 1.2em;">長く働いたアークヒルズ全日空ホテルのバイト帰りには、首相官邸裏手（国会議事堂前駅）の「花の華ラーメン」に通い詰めた。あれから40年近くが経つ今も、あの味への思い入れは色褪せない。（※当時の店舗は現在「支那麺 はしご 赤坂店」となったため、今は南麻布店へ月に１回ほど通っている。少し味のニュアンスは違う……）</p>
+                            <p style="margin-bottom: 1.2em;">また、この頃のバイト先にはDJの達人である先輩がいた。やがて先輩の家に入り浸るようになり、DJテクニックを伝授してもらう傍ら、自身のレコード収集熱にも火がついた。</p>
+                        </div>
 
-            <!-- 4. 昭和の夏の想い出 (英語併記スライドショー) -->
-            <div class="slideshow-section">
-                <div class="slideshow-title">昭和の夏の想い出｜Summer memories of the Showa era</div>
-                <div class="slideshow-container" id="summer-slider">
-                    <div class="slide-frame active"><img src="１.JPEG" alt="昭和の夏の想い出 1"></div>
-                    <div class="slide-frame"><img src="２.JPEG" alt="昭和の夏の想い出 2"></div>
-                    <div class="slide-frame"><img src="３.JPEG" alt="昭和の夏の想い出 3"></div>
-                    <div class="slide-frame"><img src="４.JPEG" alt="昭和の夏の想い出 4"></div>
-                    <div class="slide-frame"><img src="５.JPEG" alt="昭和の夏の想い出 5"></div>
-                    <div class="slide-frame"><img src="６.JPEG" alt="昭和の夏の想い出 6"></div>
-                    <div class="slide-frame"><img src="７.JPEG" alt="昭和の夏の想い出 7"></div>
-                    <div class="slide-frame"><img src="８.JPEG" alt="昭和の夏の想い出 8"></div>
-                    <div class="slide-frame"><img src="９.JPEG" alt="昭和の夏の想い出 9"></div>
-                    <div class="slide-frame"><img src="１０.JPEG" alt="昭和の夏の想い出 10"></div>
-                    <div class="slide-frame"><img src="１１.JPEG" alt="昭和の夏の想い出 11"></div>
-                    <div class="slide-frame"><img src="１２.JPEG" alt="昭和の夏の想い出 12"></div>
-                    <div class="slide-frame"><img src="１３.JPEG" alt="昭和の夏の想い出 13"></div>
-                    <div class="slide-frame"><img src="１４.JPEG" alt="昭和の夏の想い出 14"></div>
-                    <div class="slide-frame"><img src="１５.JPEG" alt="昭和の夏の想い出 15"></div>
-                    <div class="slide-frame"><img src="１６.JPEG" alt="昭和の夏の想い出 16"></div>
-                    <div class="slide-frame"><img src="１７.JPEG" alt="昭和の夏の想い出 17"></div>
-                    <div class="slide-frame"><img src="１８.JPEG" alt="昭和の夏の想い出 18"></div>
-                    <div class="slide-frame"><img src="１９.JPEG" alt="昭和の夏の想い出 19"></div>
-                    <div class="slide-frame"><img src="２０.JPEG" alt="昭和の夏の想い出 20"></div>
-                    <div class="slide-frame"><img src="２１.JPEG" alt="昭和の夏の想い出 21"></div>
-                    <div class="slide-frame"><img src="２２.JPEG" alt="昭和の夏の想い出 22"></div>
-                    <div class="slide-frame"><img src="２３.JPEG" alt="昭和の夏の想い出 23"></div>
-                    <div class="slide-frame"><img src="２４.JPEG" alt="昭和の夏の想い出 24"></div>
-                    <div class="slide-frame"><img src="２６.JPEG" alt="昭和の夏の想い出 26"></div>
-                    <div class="slide-frame"><img src="２７.JPEG" alt="昭和の夏の想い出 27"></div>
-                    <div class="slide-frame"><img src="２８.JPEG" alt="昭和の夏の想い出 28"></div>
-                    <div class="slide-frame"><img src="２９.JPEG" alt="昭和の夏の想い出 29"></div>
-                    <div class="slide-frame"><img src="３０.jpeg" alt="昭和の夏の想い出 30"></div>
-                    <div class="slide-frame"><img src="３１.JPEG" alt="昭和の夏の想い出 31"></div>
-                    <div class="slide-frame"><img src="３２.JPEG" alt="昭和の夏の想い出 32"></div>
-                    <div class="slide-frame"><img src="３３.JPEG" alt="昭和の夏の想い出 33"></div>
-                    <div class="slide-frame"><img src="３４.JPEG" alt="昭和の夏の想い出 34"></div>
-                    <div class="slide-frame"><img src="３５.JPEG" alt="昭和の夏の想い出 35"></div>
-                    <div class="slide-frame"><img src="３６.JPEG" alt="昭和の夏の想い出 36"></div>
-                    <div class="slide-frame"><img src="３７.JPEG" alt="昭和の夏の想い出 37"></div>
-                    <div class="slide-frame"><img src="３８.JPEG" alt="昭和の夏の想い出 38"></div>
+                        <!-- 左側写真群 -->
+                        <div class="era-1980-left era-1980-photo-col">
+                            <img src="IMG_6135.JPEG" alt="1980年代写真">
+                            <img src="IMG_6138.JPEG" alt="1980年代写真">
+                            <img src="IMG_6139.JPEG" alt="1980年代写真">
+                            <img src="IMG_6885.jpeg" alt="1980年代写真">
+                            <img src="IMG_3300.JPG" alt="1980年代写真">
+                        </div>
 
-                    <button class="prev-btn" onclick="moveSlide('summer-slider', -1)">&#10094;</button>
-                    <button class="next-btn" onclick="moveSlide('summer-slider', 1)">&#10095;</button>
-                </div>
-            </div>
+                        <!-- 右側写真群 -->
+                        <div class="era-1980-right era-1980-photo-col">
+                            <img src="IMG_6647.JPEG" alt="1980年代写真">
+                            <img src="IMG_6656.JPEG" alt="1980年代写真">
+                            <img src="IMG_6354.JPEG" alt="1980年代写真">
+                            <img src="IMG_6644.JPEG" alt="1980年代写真">
+                            <img src="IMG_2116.JPG" alt="1980年代写真">
+                        </div>
+                    </div>
 
-            <div class="back-to-top-btn">
-                <a href="profile.html" class="back-to-profile">← プロフィールページに戻る</a>
-            </div>
-        </div>
-    </main>
+                    <!-- 動画エリア -->
+                    <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                        <video controls style="max-width: 100%; width: 500px; height: auto; border-radius: 6px;">
+                            <source src="Video_応援団_compressed.mp4" type="video/mp4">
+                            お使いのブラウザは動画再生に対応していません。
+                        </video>
+                        <p style="margin-top: 8px; font-size: 0.85em; color: #555; font-weight: bold;">
+                            【NHK教育テレビ「YOU」に登場】
+                        </p>
+                    </div>
 
-    <footer>
-        <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
-    </footer>
+                    <!-- 文章下：写真ギャラリー（縦横自動判別・切れない右スクロール） -->
+                    <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; margin-top: 20px; -webkit-overflow-scrolling: touch; align-items: center;">
+                        <img src="IMG_6849.jpeg" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6856.jpeg" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6166.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6136.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6137.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_3298.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_3295.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_3294.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="1980年代IMG_6165.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="1980年代IMG_5924.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6642.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6645.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_3304.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_2002.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6651.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_1778.JPG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6658.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6659.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6661.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6657.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6649.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                        <img src="IMG_6652.JPEG" alt="ギャラリー" style="flex: 0 0 auto; height: 180px; width: auto; object-fit: contain; border-radius: 4px;">
+                    </div>
 
-    <!-- スライド切り替え用JavaScript -->
-    <script>
-        function moveSlide(sliderId, direction) {
-            const container = document.getElementById(sliderId);
-            const slides = container.getElementsByClassName('slide-frame');
-            let activeIndex = -1;
+                    <!-- INDEXへ戻るボタン -->
+                    <div class="back-to-index" style="margin-top: 30px;">
+                        <a href="#history-index">▲ INDEXへ戻る</a>
+                    </div>
+                </section>           
 
-            for (let i = 0; i < slides.length; i++) {
-                if (slides[i].classList.contains('active')) {
-                    activeIndex = i;
-                    slides[i].classList.remove('active');
-                    break;
-                }
-            }
+    
+                <!-- 【1990年代 ～金融の世界へ、そしてヨーロッパへ～】 -->
+                <!-- 【１９９０年代 ～金融の世界へ、そしてヨーロッパへ～】 -->
+                <section id="era-1990" class="era-section">
+                    <h3 class="era-title">1990年代 ～金融の世界へ、そしてヨーロッパへ～</h3>
+                    <div class="era-grid">
+                        
+                        <!-- 左側：文章 (約2/3) -->
+                        <div class="era-text-col">
+                            <p>1990年4月、バブル景気の真っただ中、山一證券へ入社。</p>
+                            <p>渋谷支店での5年間は個人営業の現場に身を置いた。当時470人いた総合職同期のうち、4分の3が全国の支店個人営業配属となったが、過酷な競争環境に加え、パワハラ・モラハラが横行する「使い捨て」の時代背景もあり、1年以内にその半数近くが退職していった。</p>
+                            <p>入社1年目から日本のバブル崩壊が始り、世界も大きく揺れていた。イラクのクウェート侵攻に端を発する湾岸戦争。そして1991年8月19日、ゴルバチョフが軟禁されたソ連のクーデターである。この日の市場急落は「レッドマンデー」と称された。自分の誕生日がそのように呼ばれた微妙さはともかく、同年12月にはソ連が崩壊。日本のバブル崩壊と「失われた30年」は、こうした世界情勢の激変と歩みを同じくして始まっていった。</p>
+                        </div>
 
-            let newIndex = activeIndex + direction;
-            if (newIndex >= slides.length) newIndex = 0;
-            if (newIndex < 0) newIndex = slides.length - 1;
+                        <!-- 右側：写真表示枠 (IMG_6664.JPEGへ変更) -->
+                        <div class="era-side-photo-col">
+                            <img src="IMG_6664.JPEG" alt="IMG_6664">
+                        </div>
+                    </div>
 
-            slides[newIndex].classList.add('active');
+                    <!-- 文章下：写真ギャラリー（15枚） -->
+                    <div class="era-bottom-gallery">
+                        <img src="IMG_7802.JPG" alt="IMG_7802">
+                        <img src="IMG_7800.JPEG" alt="IMG_7800">
+                        <img src="IMG_6671.JPEG" alt="IMG_6671">
+                        <img src="IMG_7799.JPEG" alt="IMG_7799">
+                        <img src="IMG_6666.JPEG" alt="IMG_6666">
+                        <img src="IMG_6667.JPEG" alt="IMG_6667">
+                        <img src="IMG_6878.JPEG" alt="IMG_6878">
+                        <img src="IMG_6879.JPEG" alt="IMG_6879">
+                        <img src="IMG_6877.JPEG" alt="IMG_6877">
+                        <img src="IMG_6880.JPEG" alt="IMG_6880">
+                        <img src="IMG_6668.JPEG" alt="IMG_6668">
+                        <img src="IMG_6875.JPEG" alt="IMG_6875">
+                        <img src="IMG_6874.JPEG" alt="IMG_6874">
+                        <img src="IMG_6663.JPEG" alt="IMG_6663">
+                        <img src="IMG_6632.JPEG" alt="IMG_6632">
+                    </div>
+
+                    <!-- 写真ギャラリー下の説明コメント（フォントを小さく設定：font-size: 0.85em;） -->
+                    <p style="margin-top: 10px; text-align: center; font-weight: bold; font-size: 0.85em; color: #555; line-height: 1.5;">
+                        山一證券新入社員導入研修と渋谷支店時代 ～ 厳しさと同居していた同僚達との強い絆
+                    </p>
+
+                    <!-- INDEXへ戻るボタン -->
+                    <div class="back-to-index">
+                        <a href="#history-index">▲ INDEXへ戻る</a>
+                    </div>
+                </section>
+                
+                    <div style="margin-top: 40px;"></div>
+
+                 <!-- 【1990年代 ～留学生選抜～】 -->
+<section id="era-1990-selection" class="era-section" style="margin-top: 40px;">
+    <style>
+        /* PC用：中央3分の1幅レイアウト */
+        .selection-container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
         }
-    </script>
-</body>
-</html>
+
+        /* 写真グループの表示スタイル（上下カットなし・全表示） */
+        .selection-photo-group {
+            margin-top: 25px;
+        }
+
+        .selection-photo-row {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            align-items: center;
+        }
+
+        .selection-photo-row img {
+            flex: 0 0 auto;
+            height: 200px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .selection-caption {
+            margin-top: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.85em;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* 携帯画面（スマホ）用レスポンシブスタイル */
+        @media (max-width: 768px) {
+            .selection-container {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+            .selection-photo-row img {
+                height: 170px; /* スマホ画面に合わせたサイズ */
+            }
+        }
+    </style>
+
+    <div class="selection-container">
+        <!-- セクションタイトル -->
+        <h4 class="era-sub-title" style="font-size: 1.25em; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #333; padding-bottom: 5px;">
+            【留学生選抜】
+        </h4>
+
+        <!-- 本文（PCでは中央3分の1幅、携帯では両幅いっぱい） -->
+        <div class="selection-text">
+            <p style="margin-bottom: 1.2em; line-height: 1.7;">
+                1995年に大きな転機が訪れる。社内の留学生選抜(応募者1,000名に対して合格枠はわずか9名)を見事に突破した。
+            </p>
+            <p style="margin-bottom: 1.2em; line-height: 1.7;">
+                とりあえず人事部人材開発部へ配属となり、新入社員の研修クラスを受け持つ新人教育も担当した後に、いきなり海外赴任が決まった。行き先はオランダ・アムステルダム。
+            </p>
+            <p style="margin-bottom: 1.2em; line-height: 1.7;">
+                バブル崩壊後の証券界は不況の真っただ中。経費削減の波は容赦なく押し寄せ、留学生に選ばれた９名のうち、私を含む3名の支店の個人営業マンに甘い密月は許されなくなっていた。会社がくれたのは「仕事を離れて学べる夢のチケット」ではなく、「現地で叩き上げられる日本株営業」のポジション。かくして私の“海外留学”は、仕事をしながら通う現地の英会話スクール生へと見事にスライドしたのだった。
+            </p>
+        </div>
+
+        <!-- 文章下 写真グループ 1 (元・文章左側グループ) -->
+        <div class="selection-photo-group">
+            <div class="selection-photo-row">
+                <img src="IMG_6674.JPEG" alt="新入社員研修担当クラスとインストラクターチーム">
+                <img src="IMG_6680.JPEG" alt="新入社員研修担当クラスとインストラクターチーム">
+                <img src="IMG_6679.JPEG" alt="新入社員研修担当クラスとインストラクターチーム">
+            </div>
+            <p class="selection-caption">
+                【新入社員研修担当クラスとインストラクターチーム】
+            </p>
+        </div>
+
+        <!-- 文章下 写真グループ 2 (元・文章右側グループ) -->
+        <div class="selection-photo-group">
+            <div class="selection-photo-row">
+                <img src="IMG_6865.JPEG" alt="アムステルダム赴任に向けて学友の表君と親族の送迎">
+                <img src="IMG_6864.JPEG" alt="アムステルダム赴任に向けて学友の表君と親族の送迎">
+            </div>
+            <p class="selection-caption">
+                【アムステルダム赴任に向けて学友の表君と親族の送迎】
+            </p>
+        </div>
+
+        <!-- INDEXへ戻るボタン -->
+        <div class="back-to-index" style="margin-top: 30px; text-align: center;">
+            <a href="#history-index">▲ INDEXへ戻る</a>
+        </div>
+    </div>
+</section>
+    
+    <div style="margin-top: 40px;"></div>
+
+                   <!-- 【オランダ・アムステルダム勤務】 -->
+                    <div class="sub-era-block" style="margin-top: 40px;">
+                        <h4 style="font-size: 1.1em; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">【オランダ・アムステルダム勤務】</h4>
+                        
+                        <div class="era-grid">
+                            <!-- 左側：写真表示枠 (unnamed.webp) -->
+                            <div class="era-side-photo-col">
+                                <img src="unnamed.webp" alt="unnamed" style="width:100%; border-radius:4px;">
+                            </div>
+
+                            <!-- 右側：文章 -->
+                            <div class="era-text-col">
+                                <p style="margin-bottom: 1.2em;">オランダ生活の拠点は、アムステルダムの職場があったワールドトレードセンターに車で３０分ほどの、アムステルフェーン地区に決めた。</p>
+                                <p style="margin-bottom: 1.2em;">いざ初めての海外勤務へ！……と意気込んだものの、日々の癒やしは「仕事終わりの英会話学校」の帰り道にあった。<br>ふらりと立ち寄ったアムステルダム市内中心の路地裏にある中古レコード店「Record Mania」で、学生時代からのDJ熱が大爆発してしまう。</p>
+                                <p style="margin-bottom: 1.2em;">英語の勉強もそこそこに、レコード店の常連へと登りつめたが、貴重な給料や海外手当の多くは、掘り出し物の中古盤へと次々に姿を変えていった。この時に掘り当てた80年代Soul・Funk・Discoの激レアコレクションは、今なお私の人生を彩る宝物となっている。</p>
+                            </div>
+                        </div>
+
+                        <!-- 文章下：写真ギャラリー（ご指定の7枚へ差し替え） -->
+                        <div class="era-bottom-gallery" style="margin-top: 20px;">
+                            <img src="IMG_6691.JPEG" alt="IMG_6691">
+                            <img src="IMG_6688.JPEG" alt="IMG_6688">
+                            <img src="IMG_6689.JPEG" alt="IMG_6689">
+                            <img src="IMG_1231.JPG" alt="IMG_1231">
+                            <img src="IMG_6862.JPEG" alt="IMG_6862">
+                            <img src="IMG_6863.JPEG" alt="IMG_6863">
+                            <img src="IMG_6690.JPEG" alt="IMG_6690">
+
+                        </div>
+                    </div>
+
+
+                    <!-- 【ロンドンの金融街シティーへ】 -->
+                    <div class="sub-era-block" style="margin-top: 40px;">
+                        <h4 style="font-size: 1.1em; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">【ロンドンの金融街シティーへ】</h4>
+                        
+                        <div class="era-grid">
+                            <!-- 左側：写真表示枠 (IMG_6682.JPEG, IMG_6867.JPEG) -->
+                            <div class="era-side-photo-col">
+                                <img src="IMG_6682.JPEG" alt="IMG_6682" style="width:100%; margin-bottom:10px; border-radius:4px;">
+                                <img src="IMG_6867.JPEG" alt="IMG_6867" style="width:100%; margin-bottom:10px; border-radius:4px;">
+                            </div>
+
+                            <!-- 右側：文章 -->
+                            <div class="era-text-col">
+                                <p style="margin-bottom: 1.2em;">次なる舞台はロンドン現地法人だった。引受部の日系法人担当として、日本企業の欧州市場における資金調達を後押しする。</p>
+                                <p style="margin-bottom: 1.2em;">さらに、日本株チームと連携して、上場企業と海外の機関投資家を結びつける「コーポレートアクセス（通称IR）」の支援にも深く携わっていった。</p>
+                                <p style="margin-bottom: 1.2em;">住まいは、ビートルズで有名なアビーロードの角を曲がった場所、セント・ジョーンズ・ウッド（通称センジョン）に構えた。独身で珍しくロンドン中心部の静かな北エリアに住んでいた理由はただ一つ。さらに北の地域（The North）に家族で住む多くの先輩方から頼まれる、週末ゴルフの運転手とプレーのお付き合いのためだった。</p>
+                            </div>
+                        </div>
+
+                        <!-- 文章下：写真（左側と同サイズ） ＆ 右側に注釈 -->
+                        <div style="display: flex; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 25px;">
+                            <div class="era-side-photo-col" style="flex: 0 0 auto; width: 30%;">
+                                <img src="IMG_6870.JPEG" alt="IMG_6870" style="width:100%; border-radius:4px; display:block;">
+                            </div>
+                            <div style="font-size: 0.85em; color: #555; font-weight: bold; line-height: 1.5;">
+                                山一１００周年記念イベント | 小澤征爾コンサート at ロイヤルアルバートホール
+                            </div>
+                        </div>
+
+                        <!-- 文章下：写真ギャラリー（ご指定の9枚を右展開並列表示） -->
+                        <div class="era-bottom-gallery" style="margin-top: 20px;">
+                            <img src="IMG_1521.JPG" alt="IMG_1521">
+                            <img src="IMG_1529.JPG" alt="IMG_1529">
+                            <img src="IMG_6681.JPEG" alt="IMG_6681">
+                            <img src="IMG_1528.JPG" alt="IMG_1528">
+                            <img src="IMG_6683.JPEG" alt="IMG_6683">
+                            <img src="IMG_1519.JPG" alt="IMG_1519">
+                            <img src="IMG_6684.JPEG" alt="IMG_6684">
+                            <img src="IMG_6686.JPEG" alt="IMG_6686">
+                            <img src="IMG_6868.JPEG" alt="IMG_6868">
+                        </div>
+                    </div>
+                <!-- 次章予告メッセージ -->
+                        <div style="margin: 50px 0 30px; padding: 30px 20px; background-color: #f9f9f9; border-top: 2px dashed #ccc; border-bottom: 2px dashed #ccc; text-align: center;">
+                            <p style="font-size: 1.1em; font-weight: bold; color: #333; margin-bottom: 10px;">
+                                「山一證券自主廃業」から始まる後編へ
+                            </p>
+                            <p style="font-size: 1.4em; font-weight: bold; font-family: 'Georgia', serif; color: #888; letter-spacing: 2px;">
+                                To Be Continued...
+                            </p>
+                        </div>
+
+                        <!-- INDEXへ戻るボタン -->
+                        <div class="back-to-index">
+                            <a href="#history-index">▲ INDEXへ戻る</a>
+                        </div>
+                    </div>
+                </section>
+            
+                    <div style="margin-top: 40px;"></div>
