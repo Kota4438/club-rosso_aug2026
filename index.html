@@ -120,7 +120,7 @@
 </head>
 <body>
 
-    <!-- 🔐 パスワード入力オーバーレイ（無限ぐるぐるローダーは削除済） -->
+    <!-- 🔐 パスワード入力オーバーレイ -->
     <div id="password-screen">
         <div class="pass-box">
             <h2>CLUB ROSSO</h2>
@@ -200,13 +200,11 @@
         /* =========================================
            1. パスワード処理プログラム
            ========================================= */
-        // ⚠️ ここにゲストへ案内したパスワードを設定してください（小文字・大文字に注意）
         const CORRECT_PASSWORD = "20260815";
 
         // ページ読み込み時に、すでに認証済みかチェックする
         window.addEventListener('DOMContentLoaded', () => {
             if (sessionStorage.getItem("siteUnlocked") === "true") {
-                // すでにパスワード通過済みなら、最初からパスワード画面を隠す
                 document.getElementById("password-screen").style.display = "none";
             }
         });
@@ -216,16 +214,14 @@
             const inputPass = document.getElementById("site-password").value;
             
             if (inputPass === CORRECT_PASSWORD) {
-                // 正解の場合：認証済みとしてブラウザに記憶させ、画面をフワッと消す
                 sessionStorage.setItem("siteUnlocked", "true");
                 const screen = document.getElementById("password-screen");
                 screen.style.transition = "opacity 0.4s ease";
                 screen.style.opacity = "0";
                 setTimeout(() => {
                     screen.style.display = "none";
-                }, 400); // 0.4秒後に完全に消す
+                }, 400);
             } else {
-                // 不正解の場合：エラーメッセージを表示
                 document.getElementById("pass-error").style.display = "block";
             }
         }
