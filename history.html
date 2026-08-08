@@ -1135,18 +1135,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>60年の歩み - 後編</title>
     <style>
-        /* ページ全体コンテナ */
-        .history-container {
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-            padding: 15px 20px 30px 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            /* ▼ 追加：画面のふらつき（横揺れ）を防止する決定的な設定 ▼ */
-            overflow-x: hidden; 
-        }
-
+/* 全体を囲む枠のスタイル設定箇所 */
+.container, .history-container {
+    width: 100%;
+    max-width: 1200px; /* ← ここを 800px などから 1100px〜1200px 程度に広げる */
+    margin: 0 auto;    /* 画面中央に配置 */
+    box-sizing: border-box;
+}
         /* 📌 インデックスへ戻るボタン */
         .back-to-index {
             text-align: right;
