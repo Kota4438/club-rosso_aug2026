@@ -1506,22 +1506,21 @@
             </div>
         </div>
         
-        <!-- 右側：写真枠（IMG_7026.jpgを筆頭にし、順番を変更） -->
-        <div class="era-side-photo-col" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
-            <!-- 1番目：IMG_7026.jpg（全体がしっかり表示されるよう修正） -->
-            <img src="IMG_7026.jpg" alt="IMG_7026" style="width: 100%; height: auto; max-width: 100%; border-radius: 6px; display: block; box-sizing: border-box;" onerror="this.onerror=null; this.src='IMG_7026.JPEG';">
-            
-            <!-- 2番目：IMG_6341.JPEG -->
-            <img src="IMG_6341.JPEG" alt="IMG_6341" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-            
-            <!-- 3番目：IMG_0072.PNG -->
-            <img src="IMG_0072.PNG" alt="IMG_0072" style="width: 100%; height: auto; border-radius: 6px; display: block;">   
-            
-            <!-- 4番目：FT ESG 告知広告 20190206.png -->
-            <img src="FT ESG 告知広告 20190206.png" alt="FT ESG 告知広告" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-        </div>
-    </div>
-
+       <!-- 右側：写真枠（IMG_7026.jpgを筆頭にし、順番を変更） -->
+<div class="era-side-photo-col" style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+    <!-- 1番目：IMG_7026.jpg（外部CSSのトリミングを確実に打ち消して全表示） -->
+    <img src="IMG_7026.jpg" alt="IMG_7026" style="width: 100% !important; height: auto !important; max-width: 100% !important; max-height: none !important; object-fit: contain !important; border-radius: 6px; display: block; box-sizing: border-box;" onerror="this.onerror=null; this.src='IMG_7026.JPEG';">
+    
+    <!-- 2番目：IMG_6341.JPEG -->
+    <img src="IMG_6341.JPEG" alt="IMG_6341" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+    
+    <!-- 3番目：IMG_0072.PNG -->
+    <img src="IMG_0072.PNG" alt="IMG_0072" style="width: 100%; height: auto; border-radius: 6px; display: block;">   
+    
+    <!-- 4番目：FT ESG 告知広告 20190206.png -->
+    <img src="FT ESG 告知広告 20190206.png" alt="FT ESG 告知広告" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+</div>
+        
     <!-- 2010年代 ギャラリー（確実に横スクロールできるようスタイル修正） -->
     <div class="era-mid-photo-block" style="margin-top: 30px; text-align: center; width: 100%; max-width: 100%; box-sizing: border-box;">
         <!-- ギャラリー 1行目 -->
