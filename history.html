@@ -9,16 +9,13 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ページ全体コンテナ */
-        .history-container {
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-            padding: 15px 20px 30px 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
+ /* 全体を囲む枠のスタイル設定箇所 */
+.container, .history-container {
+    width: 100%;
+    max-width: 1200px; /* ← ここを 800px などから 1100px〜1200px 程度に広げる */
+    margin: 0 auto;    /* 画面中央に配置 */
+    box-sizing: border-box;
+}
         .history-main-title {
             font-size: 2.2rem;
             color: #1a1a1a;
@@ -29,16 +26,18 @@
             letter-spacing: 2px;
         }
 
-        /* 📌 インデックス（目次ナビゲーション） */
-        .history-index-nav {
-            margin: 0 auto 30px auto;
-            max-width: 780px;
-            padding: 15px 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-        }
-
+     /* 📌 インデックス（目次ナビゲーション） */
+.history-index-nav {
+    margin: 0 auto 30px auto;
+    max-width: 1100px; /* ← 780px から 1100px〜1200px 程度に修正 */
+    width: 100%;       /* 画面幅に合わせてしっかり広がるように指定 */
+    padding: 20px 25px;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    box-sizing: border-box; /* パディングを含めた幅計算にする */
+}
+        
         .history-index-title {
             font-size: 1.1rem;
             font-weight: bold;
