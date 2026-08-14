@@ -1807,22 +1807,23 @@
             <p>これまで支えてくださった多くの方々とのご縁に、心から感謝を込めて。</p>
         </div>         
 
-  <!-- 左側：写真2枚の縦列配置 -->
-<div class="era-side-photo-col" style="flex: 1; min-width: 100%; max-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 15px;">
-    
-    <!-- 修正箇所：heightをautoに保ちつつ、必要に応じてmax-heightで高さを制限する -->
-    <img src="IMG_5650.JPG" alt="2020年代の写真1" 
-         style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 4px; display: block; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-    
-    <img src="IMG_6826.JPEG" alt="2020年代の写真2" 
-         style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 4px; display: block; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-</div>
-<!-- 文章下のギャラリー（右スライド展開・横スクロール型） -->
-    <div class="era-gallery-container" style="margin-top: 30px;">
+<!-- 左側：写真2枚の縦列配置 -->
+    <div class="era-side-photo-col" style="width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 15px;">
+        
+        <img src="IMG_5650.JPG" alt="2020年代の写真1" 
+             style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 4px; display: block; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        
+        <img src="IMG_6826.JPEG" alt="2020年代の写真2" 
+             style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 4px; display: block; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    </div>
+
+    <!-- 文章下のギャラリー（右スライド展開・横スクロール型） -->
+    <div class="era-gallery-container" style="margin-top: 30px; width: 100%; box-sizing: border-box; overflow: hidden;">
         <h4 style="font-size: 1rem; margin-bottom: 15px; color: #555; border-left: 3px solid #0056b3; padding-left: 8px;"></h4>
-        <div class="horizontal-slider" style="display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+        
+        <!-- 横スクロール部分：flexアイテムが縮まないように min-width: max-content を指定 -->
+        <div class="horizontal-slider" style="display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; min-width: max-content;">
             
-            <!-- 他の通常写真は cover で表示 -->
             <div style="flex: 0 0 240px; scroll-snap-align: start;">
                 <img src="IMG_6791.JPEG" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
             </div>
@@ -1833,10 +1834,9 @@
                 <img src="現在45630790_10156992337390712_7507680091279720448_n.jpg" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
             </div>
             
-            <!-- 修正箇所：IMG_6586.JPEG -->
-            <!-- object-fit: contain にし、背景色を設定することで余白を「枠の一部」として馴染ませます -->
+            <!-- IMG_6586.JPEG -->
             <div style="flex: 0 0 240px; scroll-snap-align: start; background-color: #ffffff; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <img src="IMG_6586.JPEG" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: contain; padding: 5px; box-sizing: border-box;">
+                <img src="IMG_6585.JPG" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: contain; padding: 5px; box-sizing: border-box;">
             </div>
 
             <div style="flex: 0 0 240px; scroll-snap-align: start;">
@@ -1849,10 +1849,11 @@
         <a href="#history-index" style="text-decoration: none; color: #0056b3; font-weight: bold;">▲ INDEXへ戻る</a>
     </div>
 </section>
-        
-    </div><div class="back-to-top-btn" style="margin-top: 30px; text-align: center;">
-        <a href="profile.html" class="back-to-profile">← プロフィールへ戻る</a>
-    </div>
+
+</div>
+<div class="back-to-top-btn" style="margin-top: 30px; text-align: center;">
+    <a href="profile.html" class="back-to-profile">← プロフィールへ戻る</a>
+</div>
 
 </div></body>
 </html>
