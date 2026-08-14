@@ -1818,10 +1818,11 @@
     </div>
 
     <!-- 文章下のギャラリー（右スライド展開・横スクロール型） -->
-    <div class="era-gallery-container" style="margin-top: 30px; width: 100%; box-sizing: border-box; overflow: hidden;">
+    <!-- 修正点: overflow: hidden を overflow: visible に変更 -->
+    <div class="era-gallery-container" style="margin-top: 30px; width: 100%; box-sizing: border-box; overflow: visible;">
         <h4 style="font-size: 1rem; margin-bottom: 15px; color: #555; border-left: 3px solid #0056b3; padding-left: 8px;"></h4>
         
-        <!-- 横スクロール部分：flexアイテムが縮まないように min-width: max-content を指定 -->
+        <!-- 横スクロール部分 -->
         <div class="horizontal-slider" style="display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; min-width: max-content;">
             
             <div style="flex: 0 0 240px; scroll-snap-align: start;">
@@ -1834,7 +1835,7 @@
                 <img src="現在45630790_10156992337390712_7507680091279720448_n.jpg" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
             </div>
             
-            <!-- IMG_6586.JPEG -->
+            <!-- IMG_6585.JPG -->
             <div style="flex: 0 0 240px; scroll-snap-align: start; background-color: #ffffff; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <img src="IMG_6585.JPG" alt="ギャラリー写真" style="width: 100%; height: 160px; object-fit: contain; padding: 5px; box-sizing: border-box;">
             </div>
