@@ -433,8 +433,7 @@
         <div class="history-container">
             <h2 class="history-main-title">60年の歩み</h2>
 
-<!-- 📌 年代別インデックス (目次) -->
-            <div id="history-index" class="history-index-nav">
+<div id="history-index" class="history-index-nav">
                 <div class="history-index-title">INDEX</div>
                 <ul class="history-index-list">
                     <li><a href="#era-1960"><span class="index-era" style="color: #800020; font-weight: bold;">1960年代</span> ～原点～</a></li>
@@ -444,8 +443,28 @@
                     <li><a href="#era-2000"><span class="index-era" style="color: #800020; font-weight: bold;">2000年代</span> ～再びロンドンへ～</a></li>
                     <li><a href="#era-2010"><span class="index-era" style="color: #800020; font-weight: bold;">2010年代</span> ～仕事も人生も、大きな転機～</a></li>
                     <li><a href="#era-2020"><span class="index-era" style="color: #800020; font-weight: bold;">2020年代</span> ～そして還暦へ・感謝と共に現在（いま）を紡ぐ～</a></li>
-                </ul>
+                </ul> <!-- ここでリストを閉じる -->
+
+                <!-- 📌 番外編はリストの外に配置 -->
+                <div class="extra-section">
+                    <h2 style="font-size: 1.2em; text-align: center;">番外編</h2>
+                    <div class="link-buttons">
+                        <a href="showa_heroes.html" class="button">昭和のヒーロー</a>
+                        <a href="showa_summer.html" class="button">昭和の夏の想い出</a>
+                    </div>
+                </div>
             </div>
+
+<style>
+    .extra-section { margin-top: 20px; padding: 15px; background: #f4f4f4; border-radius: 8px; }
+    .link-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .button { 
+        display: inline-block; padding: 8px 16px; 
+        background: #800020; color: #fff; text-decoration: none; 
+        border-radius: 5px; font-size: 0.9em;
+    }
+    .button:hover { background: #a00028; }
+</style>
             
             <!-- 1. 顔写真 -->
             <div class="photo-area">
