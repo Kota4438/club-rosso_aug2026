@@ -70,51 +70,21 @@
             font-weight: bold;
         }
 
-        /* ⏰ カウントダウンタイマーのデザイン */
+        /* ⏰ メッセージ枠のデザイン */
         .countdown-container {
             margin: 15px auto 25px auto;
-            padding: 15px 10px;
-            background: rgba(0, 0, 0, 0.4);
+            padding: 20px 15px;
+            background: rgba(0, 0, 0, 0.85);
             border: 1px solid #d4af37;
             border-radius: 6px;
-            max-width: 450px;
+            max-width: 480px;
         }
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #d4af37;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: bold;
-        }
-        .countdown-display {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 60px;
-        }
-        .countdown-number {
-            font-family: 'Georgia', serif;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255,184,0,0.6);
-            line-height: 1;
-        }
-        .countdown-unit {
-            font-size: 0.75rem;
-            color: #cccccc;
-            margin-top: 4px;
-        }
-        .countdown-expired {
-            font-size: 1.2rem;
-            color: #ffb800;
-            font-weight: bold;
-            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -144,7 +114,6 @@
                 <li><a href="index.html" class="active">Top</a></li>
                 <li><a href="access.html">Access</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="ticket.html" class="btn-ticket">Ticket</a></li>
             </ul>
         </nav>
     </header>
@@ -166,29 +135,26 @@
 
             <p class="retro-date-clean">2026.8.15 (Sat)</p>
 
-            <p class="retro-time-clean" style="font-family: 'Georgia', sans-serif; font-size: 1.4rem; color: #ffffff; letter-spacing: 2px; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
+            <p class="retro-time-clean" style="font-family: 'Georgia', sans-serif; font-size: 1.4rem; color: #ffffff; letter-spacing: 2px; margin-bottom: 20px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
                 Open 11:30am / Start 12:00pm
             </p>
 
-            <!-- 📌 イベント終了・御礼メッセージ枠 -->
-            <div class="countdown-container" style="border-color: #d4af37; background: rgba(0, 0, 0, 0.85);">
-                <div class="countdown-label" style="font-size: 1rem; margin-bottom: 6px;">【満員御礼】イベント終了のご挨拶</div>
-                <div style="color: #ffffff; font-size: 0.9rem; line-height: 1.6; text-align: left; padding: 0 5px;">
-                    おかげさまで、当日は会場キャパシティを超える満席のお客様にお越しいただき、大盛況のうちに無事終了いたしました。<br>
-                    温かいご支援と素晴らしい時間をともに過ごしていただいたすべての皆様に、心より感謝申し上げます。
+            <!-- 📌 イベント終了・御礼メッセージ表示エリア -->
+            <div class="countdown-container">
+                <div class="countdown-label">【満員御礼】イベント終了のご挨拶</div>
+                <div style="color: #ffffff; font-size: 0.9rem; line-height: 1.7; text-align: left; padding: 0 5px;">
+                    おかげさまで、当日は会場キャパシティを超える満席のお客様にお越しいただき、大盛況のうちに無事終了いたしました[cite: 3]。<br>
+                    温かいご支援と素晴らしい時間をともに過ごしていただいたすべての皆様に、心より感謝申し上げます[cite: 3]。
                 </div>
-                <div style="font-size: 0.8rem; color: #d4af37; text-align: right; margin-top: 10px; border-top: 1px dashed rgba(212,175,55,0.4); pting-top: 6px;">
+                <div style="font-size: 0.8rem; color: #d4af37; text-align: right; margin-top: 12px; border-top: 1px dashed rgba(212,175,55,0.4); padding-top: 8px;">
                     吉沢孝太郎 還暦記念実行関係者一同
                 </div>
             </div>
 
-            <div class="retro-venue-box">
+            <div class="retro-venue-box" style="margin-top: 15px;">
                 <p class="venue-name">CLUB ROSSO</p>
                 <p class="venue-address">渋谷区松濤1-29-1 渋谷クロスロードビルB1F</p>
-                <p class="event-price" style="color: #ffb800 !important; font-size: 1.2rem !important;">料金：4,500円/人 <span style="font-size: 0.8em; font-weight: normal; margin-left: 4px;">(全席自由・ワンドリンク付)</span></p>
             </div>
-
-            <a href="ticket.html" class="cta-button retro-btn">チケットを申し込む</a>
         </div>
     </main>
 
@@ -196,10 +162,10 @@
         <p>&copy; 2026 Event Organizer. All Rights Reserved.</p>
     </footer>
 
-    <!-- プログラム（パスワード処理 ＆ カウントダウン） -->
+    <!-- プログラム（パスワード処理） -->
     <script>
         /* =========================================
-           1. パスワード処理プログラム
+           パスワード処理プログラム
            ========================================= */
         const CORRECT_PASSWORD = "20260815";
 
@@ -226,34 +192,6 @@
                 document.getElementById("pass-error").style.display = "block";
             }
         }
-
-        /* =========================================
-           2. カウントダウンプログラム
-           ========================================= */
-        const targetDate = new Date("2026/08/15 12:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                document.getElementById("countdown").innerHTML = "<div class='countdown-expired'>本日のイベントは終了いたしました。</div>";
-            }
-        }
-
-        const timerInterval = setInterval(updateCountdown, 1000);
-        updateCountdown();
     </script>
 
 </body>
